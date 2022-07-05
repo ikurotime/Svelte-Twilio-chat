@@ -1,0 +1,25 @@
+import { writable } from "svelte/store";
+type User = {
+  avatar: string,
+  username: any,
+  email: string,
+  token: string,
+}
+export const user = writable<User>({
+  avatar: '',
+  username: '',
+  email: '',
+  token: '',
+})
+
+export const userName = writable<string>("")
+export const selectedTab = writable<string>("FIRST_TAB")
+
+export const FIRST_TAB = "FIRST_TAB";
+export const SECOND_TAB = "SECOND_TAB";
+export const ACTIVE_TAB = 'inline-block p-4 text-blue-400 bg-gray-100 rounded-t-lg'
+export const UNACTIVE_TAB = "inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 ";
+
+export const isJoinRoom = writable<boolean>(false)
+export const isCreatingRoom = writable<boolean>(false)
+export const roomCode = writable<string>("")

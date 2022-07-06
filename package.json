@@ -31,6 +31,7 @@
 	"type": "module",
 	"dependencies": {
 		"@twilio/conversations": "^2.1.0",
+		"svelte-icons": "^2.1.0",
 		"twilio": "^3.78.0"
 	}
 }

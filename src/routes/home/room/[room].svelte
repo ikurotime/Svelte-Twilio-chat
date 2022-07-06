@@ -11,12 +11,12 @@
 	<meta name="description" content="El chat de discusion de temas de programacion!" />
 </svelte:head>
 
+<div class="bg-neutral-700 h-full w-full grid place-content-center overflow-y-hidden">
 {#if $activeConversation?.uniqueName}
 	<h2 class="text-3xl my-2">
 		{$activeConversation?.uniqueName}
 	</h2>
-	<div class="flex flex-col max-w-6xl mx-auto py-2 w-full overflow-y-scroll">
 		<Conversation />
-	</div>
 	<ConversationInput />
 {/if}
+</div>

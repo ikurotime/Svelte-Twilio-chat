@@ -36,8 +36,6 @@ export const get = async ({ request }) => {
 
 	accessToken.addGrant(conversationGrant);
 
-	console.log(accessToken.toJwt());
-
 	return {
 		status: 200,
 		body: {

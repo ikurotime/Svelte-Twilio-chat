@@ -11,6 +11,7 @@
 	onMount(async () => {
 		const paginator = await $activeConversation.getMessages();
 		messages = paginator.items;
+		console.log(messages.at(-1));
 
 		$activeConversation.on('messageAdded', (message) => {
 			messages = [...messages, message];
@@ -22,7 +23,7 @@
 	});
 </script>
 
-<div bind:this={div}>
+<div bind:this={div} class="bg-white overflow-y-scroll">
 	{#each messages as message}
 		<Message {message} />
 	{/each}

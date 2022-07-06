@@ -13,7 +13,7 @@
 	</span>
 	<img
 		src={$user.avatar !== '' ? $user?.avatar : Avatar}
-		class="w-10 h-10 rounded-full bg-white"
+		class="w-8 h-8 rounded-full bg-white"
 		alt={$user?.username}
 	/>
 </div>

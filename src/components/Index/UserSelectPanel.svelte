@@ -4,14 +4,13 @@
 	import Avatar from '../../images/anonymous.png';
 	import random from '../../images/icons/random.svg';
 	import discord from '../../images/icons/discord.svg';
+	import { goto } from '$app/navigation';
 	/**
 	 *
 	 * @param {{ preventDefault: () => void; }} e
 	 */
 	function handleAnonymousSubmit(e) {
 		e.preventDefault();
-		//set random $userName
-
 		user.update((user) => {
 			if (!$isRandomUser)
 				(user.avatar = `https://avatars.dicebear.com/api/open-peeps/${$userName}.svg`),
@@ -20,6 +19,7 @@
 					(user.token = `anonymous_${$userName}`);
 			return user;
 		});
+		goto('/home');
 	}
 
 	function randomUserImage() {
@@ -35,20 +35,7 @@
 	/**
 	 * @param {{ preventDefault: () => void; }} e
 	 */
-	function handleLoginSubmit(e) {
-		e.preventDefault();
-	}
-	/**
-	 * @param {{ preventDefault: () => void; }} e
-	 */
-	function handleJoiningRoom(e) {
-		e.preventDefault();
-		isJoinRoom.set(true);
-	}
-	/**
-	 * @param {{ preventDefault: () => void; }} e
-	 */
-	function handleCreatingRoom(e) {
+	function handleDiscordLogin(e) {
 		e.preventDefault();
 		isJoinRoom.set(false);
 	}
@@ -102,10 +89,10 @@
 			className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm"
 		/>
 	</div> -->
-	<p>-or-</p>
+	<p>- or -</p>
 	<StyledButton
 		text="LOGIN WITH DISCORD"
-		onClick={handleCreatingRoom}
+		onClick={handleDiscordLogin}
 		type="button"
 		className="text-white bg-[#5865F2] shadow-[0_5px_0_#4853cf] p-2 rounded-xl text-sm"
 		icon={discord}

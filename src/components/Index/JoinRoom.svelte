@@ -13,7 +13,7 @@
 	async function handleEnterRoom(e) {
 		e.preventDefault();
 
-		if (!$user || $user?.token == null) return;
+		if (!$user || $user?.token == null || $roomCode === '') return;
 
 		const accessToken = await getAccessToken({ token: $user.token });
 		const conversation = await createOrJoinConversation({ room: $roomCode, accessToken });
@@ -27,9 +27,9 @@
 
 <form
 	on:submit={handleEnterRoom}
-	class="p-3 bg-gray-100 rounded h-96 grid place-content-center gap-3 justify-items-center"
+	class="p-10 bg-neutral-800 rounded h-96 max-w-lg w-full grid place-content-center gap-3 justify-items-center "
 >
-	<p>ENTER YOUR ROOM CODE</p>
+	<p class="text-white">ENTER YOUR ROOM CODE</p>
 	<div class="flex gap-3">
 		<input type="text" bind:value={$roomCode} class="p-3 rounded text-center" />
 		<StyledButton
@@ -37,6 +37,7 @@
 			onClick={() => {}}
 			type="submit"
 			className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm"
+			icon={null}
 		/>
 	</div>
 	<StyledButton
@@ -46,5 +47,6 @@
 		}}
 		type="button"
 		className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm"
-	/>
+		icon={null}
+		/>
 </form>

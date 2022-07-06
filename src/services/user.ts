@@ -15,6 +15,7 @@ export const createOrJoinConversation = async (
           console.error(error)
           try {
             conversation = await client.getConversationByUniqueName(room)
+            //conversation?.add('Zero')
           } catch (error) {
             console.error(error)
           }

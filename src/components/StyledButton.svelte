@@ -8,7 +8,7 @@
 </script>
 
 <button
-	class={`${className} active:shadow-none active:translate-y-1 px-3`}
+	class={`${className} active:shadow-none active:translate-y-1 px-3 transition-all`}
 	on:click={onClick}
 	{type}
 >

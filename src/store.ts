@@ -23,3 +23,5 @@ export const UNACTIVE_TAB = "inline-block p-4 rounded-t-lg hover:text-gray-600 h
 export const isJoinRoom = writable<boolean>(false)
 export const isCreatingRoom = writable<boolean>(false)
 export const roomCode = writable<string>("")
+export const activeConversation = writable<string>("")
+export const isRandomUser = writable<boolean>(false)

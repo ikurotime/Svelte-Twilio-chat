@@ -1,11 +1,17 @@
 <script>
-import Header from "../components/Index/Header.svelte";
-  import "../app.css";
+	import Header from '../components/Index/Header.svelte';
+	import '../app.css';
 </script>
 
-<main class="h-screen flex justify-center items-center">
-  <div class="border-4 mx-3 border-slate-300 rounded-lg h-full max-w-7xl max-h-[80vh] p-3 w-full">  
-    <Header/>
-    <slot />
-  </div>
+<Header />
+<main
+	class="h-full flex flex-col justify-center items-center bg-picture bg-cover bg-bottom bg-fixed"
+>
+	<div class=" mx-3  rounded-lg max-w-7xl h-full max-h-[80vh] p-3 w-full flex flex-col ">
+		<slot />
+	</div>
 </main>
+
+<footer class="grid place-content-center p-5 bg-neutral-800 text-white">
+	<p>Made with ❤️ by David Huertas</p>
+</footer>

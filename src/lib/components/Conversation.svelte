@@ -23,7 +23,7 @@
 	});
 </script>
 
-<div bind:this={div} class="bg-white overflow-y-scroll">
+<div bind:this={div} class="bg-neutral-600 w-full flex flex-col h-full overflow-y-scroll">
 	{#each messages as message}
 		<Message {message} />
 	{/each}

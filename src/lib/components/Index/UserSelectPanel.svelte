@@ -1,15 +1,16 @@
 <script>
 	import StyledButton from '../StyledButton.svelte';
-	import { user, userName, isJoinRoom, isRandomUser } from '../../store';
+	import { user, userName, isJoinRoom, isRandomUser, accessToken } from '../../../store';
 	import Avatar from '../../images/anonymous.png';
 	import random from '../../images/icons/random.svg';
 	import discord from '../../images/icons/discord.svg';
 	import { goto } from '$app/navigation';
+	import { loginWithDiscord } from '$lib/supabaseClient'
 	/**
 	 *
 	 * @param {{ preventDefault: () => void; }} e
 	 */
-	function handleAnonymousSubmit(e) {
+	async function handleAnonymousSubmit(e) {
 		e.preventDefault();
 		user.update((user) => {
 			if (!$isRandomUser)
@@ -19,7 +20,10 @@
 					(user.token = `anonymous_${$userName}`);
 			return user;
 		});
-		goto('/home');
+			
+			console.log($accessToken);
+			goto('/home');
+	
 	}
 
 	function randomUserImage() {
@@ -32,13 +36,6 @@
 		});
 	}
 
-	/**
-	 * @param {{ preventDefault: () => void; }} e
-	 */
-	function handleDiscordLogin(e) {
-		e.preventDefault();
-		isJoinRoom.set(false);
-	}
 </script>
 
 <form
@@ -75,24 +72,10 @@
 		className="text-white bg-[#4F5E5B] shadow-[0_5px_0_#3a4543] p-2 h-10 rounded-xl text-sm"
 		icon={null}
 	/>
-	<!-- 	<div class="flex flex-row gap-3">
-		<StyledButton
-			text="JOIN ROOM"
-			onClick={handleJoiningRoom}
-			type="button"
-			className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm"
-		/>
-		<StyledButton
-			text="CREATE ROOM"
-			onClick={handleCreatingRoom}
-			type="button"
-			className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm"
-		/>
-	</div> -->
 	<p>- or -</p>
 	<StyledButton
 		text="LOGIN WITH DISCORD"
-		onClick={handleDiscordLogin}
+		onClick={loginWithDiscord}
 		type="button"
 		className="text-white bg-[#5865F2] shadow-[0_5px_0_#4853cf] p-2 rounded-xl text-sm"
 		icon={discord}

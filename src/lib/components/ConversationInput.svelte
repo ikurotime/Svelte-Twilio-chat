@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 
-	import { activeConversation } from '../store';
+	import { activeConversation,roomCode } from '../store';
 
 	let message = '';
 
@@ -16,5 +16,5 @@
 <svelte:window on:keydown={handleKeyDown} />
 
 <div class="grow-0">
-	<input type="text" class="p-3 border-2 w-full rounded" bind:value={message} />
+	<input type="text" class="p-3 border-2 border-neutral-700 w-full rounded-xl bg-neutral-500" placeholder={`Enviar mensaje a ${$roomCode}...`} bind:value={message} />
 </div>

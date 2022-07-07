@@ -1,5 +1,5 @@
 <script>
-	import { ACTIVE_TAB, FIRST_TAB, SECOND_TAB, selectedTab, UNACTIVE_TAB } from '../../store';
+	import { ACTIVE_TAB, FIRST_TAB, SECOND_TAB, selectedTab, UNACTIVE_TAB } from '../../../store';
 	/**
 	 * @param {string} tab
 	 */

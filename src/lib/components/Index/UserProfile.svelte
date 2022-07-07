@@ -1,6 +1,6 @@
 <script>
-	import Avatar from '../../images/anonymous.png';
-	import { user, userName } from '../../store';
+	import Avatar from '../../../images/anonymous.png';
+	import { user, userName } from '../../../store';
 </script>
 
 <div class="flex justify-center text-end items-center">

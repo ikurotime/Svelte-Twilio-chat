@@ -145,7 +145,7 @@
   }
 
   .channel-bar {
-    @apply w-80 h-auto m-0 ml-16 bg-gray-200 dark:bg-gray-800
+    @apply flex flex-col w-80 h-auto m-0 ml-16 bg-gray-200 dark:bg-gray-800
      overflow-hidden;
   }
 

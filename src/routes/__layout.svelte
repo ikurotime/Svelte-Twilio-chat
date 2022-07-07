@@ -4,10 +4,10 @@
 	import '../app.css';
 	import { session } from '$app/stores';
 	import { singOut, supabase} from "$lib/supabaseClient";
-import { goto } from '$app/navigation';
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
 	supabase.auth.onAuthStateChange((event,sesh) => {
-		console.log(sesh);
 		if (event === 'SIGNED_IN') {
 			// Set cookie
 			fetch('/api/cookie/',{

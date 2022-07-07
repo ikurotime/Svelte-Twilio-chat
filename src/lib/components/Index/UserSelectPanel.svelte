@@ -1,9 +1,9 @@
 <script>
 	import StyledButton from '../StyledButton.svelte';
 	import { user, userName, isRandomUser, accessToken } from '$lib/stores/store';
-	import Avatar from '../../images/anonymous.png';
-	import random from '../../images/icons/random.svg';
-	import discord from '../../images/icons/discord.svg';
+	import Avatar from '../../../images/anonymous.png';
+	import random from '../../../images/icons/random.svg';
+	import discord from '../../../images/icons/discord.svg';
 	import { goto } from '$app/navigation';
 	import { signInWith } from '$lib/supabaseClient'
 	/**

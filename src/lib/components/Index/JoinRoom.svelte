@@ -27,7 +27,7 @@
 
 <form
 	on:submit={handleEnterServer}
-	class="p-10 bg-neutral-800 rounded h-96 max-w-lg w-full grid place-content-center gap-3 justify-items-center "
+	class="p-10 bg-neutral-800 rounded h-full w-full grid place-content-center gap-3 justify-items-center "
 >
 	<p class="text-white">ENTER YOUR SERVER CODE</p>
 	<div class="flex gap-3">

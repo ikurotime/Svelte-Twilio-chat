@@ -4,6 +4,6 @@
 </script>
 
 <div class='dropdown-selection'>
-  <FaHashtag size='24' class='text-gray-400' />
+  <FaHashtag />
   <h5 class='dropdown-selection-text'>{selection}</h5>
 </div>

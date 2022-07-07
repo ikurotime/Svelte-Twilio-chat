@@ -16,7 +16,7 @@
     >
       {header}
     </h5>
-    <MdAdd size='12' class='text-accent text-opacity-80 my-auto ml-auto' />
+    <MdAdd />
   </div>
   {#if expanded && selections}
   {#each selections as selection}

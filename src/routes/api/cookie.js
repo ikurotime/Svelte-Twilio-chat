@@ -11,3 +11,12 @@ export const post = async ({ request }) => {
     }
   }
 }
+
+export const del = () => {
+  return {
+    status: 204,
+    headers: {
+      'set-cookie': `session=; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=Thu, 01 Jan 1970 00:00:00 UTC;`
+    }
+  }
+}

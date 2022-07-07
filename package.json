@@ -30,8 +30,11 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@supabase/supabase-js": "^1.35.4",
 		"@twilio/conversations": "^2.1.0",
+		"cookie": "^0.5.0",
 		"svelte-icons": "^2.1.0",
-		"twilio": "^3.78.0"
+		"twilio": "^3.78.0",
+		"uuid": "^8.3.2"
 	}
 }

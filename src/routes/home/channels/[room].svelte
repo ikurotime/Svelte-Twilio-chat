@@ -3,7 +3,7 @@
 	import Conversation from '$lib/components/Conversation.svelte';
 
 	import ConversationInput from '$lib/components/ConversationInput.svelte';
-	import { activeConversation } from '../../../store';
+	import { activeConversation } from '$lib/stores/store';
 </script>
 
 <svelte:head>

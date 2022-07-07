@@ -2,7 +2,7 @@
 	// @ts-nocheck
 
 	import { onMount, afterUpdate } from 'svelte';
-	import { activeConversation } from '../store';
+	import { activeConversation } from '$lib/stores/store';
 	import Message from './Message.svelte';
 
 	let div;

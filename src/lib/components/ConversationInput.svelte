@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 
-	import { activeConversation,roomCode } from '../store';
+	import { activeConversation,roomCode } from '$lib/stores/store';
 
 	let message = '';
 

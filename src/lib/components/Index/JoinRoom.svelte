@@ -2,10 +2,10 @@
 	// @ts-nocheck
 
 	import StyledButton from '../StyledButton.svelte';
-	import { roomCode, user, activeConversation } from '../../../store';
-	import { getAccessToken, getServiceSid } from '../../../services/chat';
+	import { roomCode, user, activeConversation } from '$lib/stores/store';
+	import { getAccessToken, getServiceSid } from '$lib/services/chat';
 	import { goto } from '$app/navigation';
-	import { createOrJoinConversation } from '../../../services/user';
+	import { createOrJoinConversation } from '$lib/services/user';
 
 	/**
 	 * @param {{ preventDefault: () => void; }} e

@@ -1,6 +1,4 @@
 <script>
-	import { isJoinRoom } from '../../../store';
-	import JoinRoom from './JoinRoom.svelte';
 	import UserSelectPanel from './UserSelectPanel.svelte';
 </script>
 

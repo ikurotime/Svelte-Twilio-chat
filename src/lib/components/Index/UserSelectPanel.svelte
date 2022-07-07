@@ -1,11 +1,11 @@
 <script>
 	import StyledButton from '../StyledButton.svelte';
-	import { user, userName, isJoinRoom, isRandomUser, accessToken } from '../../../store';
+	import { user, userName, isRandomUser, accessToken } from '$lib/stores/store';
 	import Avatar from '../../images/anonymous.png';
 	import random from '../../images/icons/random.svg';
 	import discord from '../../images/icons/discord.svg';
 	import { goto } from '$app/navigation';
-	import { loginWithDiscord } from '$lib/supabaseClient'
+	import { signInWith } from '$lib/supabaseClient'
 	/**
 	 *
 	 * @param {{ preventDefault: () => void; }} e
@@ -75,7 +75,7 @@
 	<p>- or -</p>
 	<StyledButton
 		text="LOGIN WITH DISCORD"
-		onClick={loginWithDiscord}
+		onClick={() => signInWith('discord')}
 		type="button"
 		className="text-white bg-[#5865F2] shadow-[0_5px_0_#4853cf] p-2 rounded-xl text-sm"
 		icon={discord}

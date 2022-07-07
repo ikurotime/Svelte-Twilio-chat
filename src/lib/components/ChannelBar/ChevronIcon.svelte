@@ -1,5 +1,5 @@
 <script>
-import { expanded } from "./channelStore";
+import { expanded } from "$lib/stores/channelStore";
 import FaChevronDown from 'svelte-icons/fa/FaChevronDown.svelte'
 import FaChevronRight from 'svelte-icons/fa/FaChevronRight.svelte'
    const chevClass = 'text-accent text-opacity-80 my-auto mr-1';

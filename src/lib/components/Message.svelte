@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 
-	import { userName} from '../store';
+	import { userName} from '$lib/stores/store';
 
 	export let message = { body, author };
 	const { body, author } = message;

@@ -1,29 +1,46 @@
 <script>
 	import StyledButton from '../StyledButton.svelte';
-	import { user, userName, isRandomUser, accessToken } from '$lib/stores/store';
+	import { user, userName, isRandomUser } from '$lib/stores/store';
 	import Avatar from '../../../images/anonymous.png';
 	import random from '../../../images/icons/random.svg';
 	import discord from '../../../images/icons/discord.svg';
 	import { goto } from '$app/navigation';
-	import { signInWith } from '$lib/supabaseClient'
+	import { signInWith, supabase } from '$lib/supabaseClient';
+	import { v4 as uuidv4 } from 'uuid';
 	/**
 	 *
 	 * @param {{ preventDefault: () => void; }} e
 	 */
 	async function handleAnonymousSubmit(e) {
 		e.preventDefault();
+		let uid = uuidv4();
 		user.update((user) => {
-			if (!$isRandomUser)
-				(user.avatar = `https://avatars.dicebear.com/api/open-peeps/${$userName}.svg`),
-					(user.username = $userName),
-					(user.email = 'a@a.com'),
-					(user.token = `anonymous_${$userName}`);
+			if (!$isRandomUser) {
+				user.id = uid;
+				user.avatar = `https://avatars.dicebear.com/api/open-peeps/${$userName}.svg`;
+				user.username = $userName;
+				user.email = 'a@a.com';
+				user.token = `anonymous_${$userName}`;
+			}
+
 			return user;
 		});
-			
-			console.log($accessToken);
-			goto('/home');
-	
+		const { data, error } = await supabase.from('users').select('id').eq('username', $userName);
+		console.log(data);
+		console.log(error);
+		if (data.length === 0) {
+			const { data, error } = await supabase.from('users').insert([
+				{
+					id: uid,
+					username: $userName,
+					status: null,
+					SID: null
+				}
+			]);
+			console.log(data);
+			console.log(error);
+		}
+		goto('/home');
 	}
 
 	function randomUserImage() {
@@ -35,7 +52,6 @@
 			return user;
 		});
 	}
-
 </script>
 
 <form

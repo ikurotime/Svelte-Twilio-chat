@@ -1,10 +1,10 @@
 // @ts-nocheck
 import cookie from 'cookie'
-
+  //These hooks get called with every request to the server.
   //https://kit.svelte.dev/docs/hooks#handle
 export const handle = async ({event,resolve}) => {
   // Grab the cookie
-  const cookies = await cookie.parse(event.request.headers.get(('cookie')) || '')
+  const cookies = await cookie.parse(event.request.headers.get('cookie') || '')
   const session = cookies.session ? JSON.parse(cookies.session) : null
 
   // If the session is in the cookie, asign it to the SvelteKit's store in order to work with getStore()

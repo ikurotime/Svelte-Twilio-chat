@@ -9,6 +9,7 @@
 	let messages = [];
 
 	onMount(async () => {
+		console.log($activeConversation);
 		const paginator = await $activeConversation.getMessages();
 		messages = paginator.items;
 		console.log(messages.at(-1));

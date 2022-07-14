@@ -1,38 +1,47 @@
 import { Client } from '@twilio/conversations'
-export const signInWithDiscord = async () =>{
-  const res = await fetch('/api/login-with-discord')
-  
-    if(!res.ok) {
-      throw new Error('Could not get access token')
-    }
-  
-    const { data } = await res.json()
-    return data
-}
-
-export const createOrJoinConversation = async (
-  { room, accessToken } : { room:string, accessToken:string}
+import { supabase } from '../supabaseClient'
+import { addParticipant } from './chat'
+export const JoinConversation = async (
+  { room, twilioAccessToken, uid,serverSid,identity} : { room:string, twilioAccessToken:string, uid:string,serverSid:string ,identity:string}
   ) => { 
-  const client = new Client(accessToken)
+  const client = new Client(twilioAccessToken)
   return new Promise(resolve => { 
     client.on('stateChanged',async state =>{
       if(state === 'initialized'){
         let conversation
         try {
-          conversation = await client.createConversation({uniqueName: room,friendlyName: room})
+          conversation = await client.getConversationBySid(room)
         } catch (error) {
           console.error(error)
-          try {
-            conversation = await client.getConversationByUniqueName(room)
-            //conversation?.add('Zero')
-          } catch (error) {
-            console.error(error)
-          }
         }
-       /*  conversation?.add('ma')
-        conversation?.add('mb') */
+        resolve(conversation)
+      }
+    })
+  })
+}
 
-        conversation?.join()
+export const createDefaultChannels = async (
+  { twilioAccessToken,serverSid,id } : { twilioAccessToken:string, serverSid:string ,id:string}
+  ) => { 
+    console.log('createDefaultChannels')
+  const client = new Client(twilioAccessToken)
+  console.log(twilioAccessToken)
+  console.log(client)
+  return new Promise(resolve => { 
+    client.on('stateChanged',async state =>{
+      if(state === 'initialized'){
+        let conversation
+        try {
+          conversation = await client.createConversation({ uniqueName: 'general',friendlyName: 'general' })
+          if(conversation) {
+            // Insert the conversation into the database
+            await supabase.from('channels').insert({
+              server_sid: serverSid, channel_friendly_name: 'general', channel_sid: conversation.sid,created_by:id
+            })
+          }
+        } catch (error) {
+          console.error(error)
+        } 
 
         resolve(conversation)
       }

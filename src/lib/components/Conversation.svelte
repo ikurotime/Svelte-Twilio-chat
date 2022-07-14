@@ -9,10 +9,10 @@
 	let messages = [];
 
 	onMount(async () => {
-		console.log($activeConversation);
+		//console.log($activeConversation);
 		const paginator = await $activeConversation.getMessages();
 		messages = paginator.items;
-		console.log(messages.at(-1));
+		//console.log(messages.at(-1));
 
 		$activeConversation.on('messageAdded', (message) => {
 			messages = [...messages, message];

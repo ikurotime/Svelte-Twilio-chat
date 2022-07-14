@@ -3,6 +3,7 @@
 
 	import '../app.css';
 	import { session, page } from '$app/stores';
+	import { user } from '$lib/stores/store';
 	import { signOut, supabase } from '$lib/supabaseClient';
 	import { goto } from '$app/navigation';
 	supabase.auth.onAuthStateChange((event, sesh) => {
@@ -26,6 +27,13 @@
 		} else if (event === 'SIGNED_OUT') {
 			// Clear data from the pages and session store.
 			$session = null;
+			user.set({
+				id: '',
+				avatar: '',
+				username: '',
+				email: '',
+				token: ''
+			});
 			// Expire the cookie
 			fetch('/api/cookie', {
 				method: 'DELETE'

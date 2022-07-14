@@ -15,19 +15,17 @@
 		e.preventDefault();
 		let uid = uuidv4();
 		user.update((user) => {
-			if (!$isRandomUser) {
-				user.id = uid;
-				user.avatar = `https://avatars.dicebear.com/api/open-peeps/${$userName}.svg`;
-				user.username = $userName;
-				user.email = 'a@a.com';
-				user.token = `anonymous_${$userName}`;
-			}
+			user.id = uid;
+			user.avatar = `https://avatars.dicebear.com/api/open-peeps/${$userName}.svg`;
+			user.username = $userName;
+			user.email = 'a@a.com';
+			user.token = `anonymous_${$userName}`;
 
 			return user;
 		});
 		const { data, error } = await supabase.from('users').select('id').eq('username', $userName);
-		console.log(data);
-		console.log(error);
+		//console.log(data);
+		//console.log(error);
 		if (data.length === 0) {
 			const { data, error } = await supabase.from('users').insert([
 				{
@@ -37,9 +35,10 @@
 					SID: null
 				}
 			]);
-			console.log(data);
-			console.log(error);
+			//console.log(data);
+			//console.log(error);
 		}
+		//console.log($user);
 		goto('/home');
 	}
 

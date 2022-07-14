@@ -38,7 +38,7 @@ export const get = async ({ request }) => {
 	});
 
 	accessToken.addGrant(conversationGrant);
-	console.log(accessToken, identity);
+	//console.log(accessToken, identity);
 	return {
 		status: 200,
 		body: {

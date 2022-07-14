@@ -20,13 +20,15 @@
 			.from('servers')
 			.select(`friendly_name, channels(channel_sid, server_sid)`)
 			.eq('friendly_name', $roomCode);
-		console.log('token: ', token);
+		/* 		console.log('token: ', token);
+		console.log('access_token: ', userData?.access_token);
+		console.log('user?.token: ', $user?.token); */
 		if (token.startsWith('anonymous')) {
 			userIdentity = token.split('_')[1];
-			console.log(userIdentity);
+			//console.log(userIdentity);
 		} else {
 			const { data } = await supabase.auth.api.getUser(token);
-			userIdentity = data.user_metadata.full_name;
+			userIdentity = data?.user_metadata.full_name;
 		}
 		await addParticipant({
 			identity: userIdentity,
@@ -38,7 +40,7 @@
 			token,
 			serverSid: data[0].channels[0].server_sid
 		});
-		console.log(uid);
+		//console.log(uid);
 		const chatConversation = await JoinConversation({
 			room: data[0].channels[0].channel_sid,
 			twilioAccessToken: accessToken,
@@ -46,7 +48,7 @@
 			uid,
 			serverSid: data[0].channels[0].server_sid
 		});
-		console.log(chatConversation);
+		//console.log(chatConversation);
 		if (chatConversation) {
 			activeConversation.set(chatConversation);
 			goto(`/home/server/${$roomCode}`);
@@ -74,11 +76,11 @@
 			token,
 			serverSid
 		});
-		console.log(conversation);
-		console.log({
+		//console.log(conversation);
+		/* console.log({
 			room: conversation.sid,
 			twilioAccessToken: accessToken
-		});
+		}); */
 
 		const chatConversation = await JoinConversation({
 			room: conversation.sid,

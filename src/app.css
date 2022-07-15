@@ -2,220 +2,221 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-  .sidebar-icon{
-      @apply relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto 
-      bg-gray-800 text-green-500 hover:bg-green-600 hover:text-white rounded-3xl hover:rounded-xl transition-all duration-300 cursor-pointer shadow-[0_5px_0_#19212b] active:shadow-none active:translate-y-1 hover:shadow-[0_5px_0_#166534] px-3
-  }
-  .sidebar-icon-active{   
-      @apply relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto bg-green-600 text-white rounded-xl transition-all duration-300 cursor-pointer shadow-[0_5px_0_#e3e3e3]
-  }
-  .sidebar-icon.group svg ,.sidebar-icon-active.group svg {
-      @apply w-8;
-  }
+@layer components {
+	.sidebar-icon {
+		@apply relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto 
+      bg-gray-800 text-green-500 hover:bg-green-600 hover:text-white rounded-3xl hover:rounded-xl transition-all duration-300 cursor-pointer shadow-[0_5px_0_#19212b] active:shadow-none active:translate-y-1 hover:shadow-[0_5px_0_#166534] px-3;
+	}
+	.sidebar-icon-active {
+		@apply relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto bg-green-600 text-white rounded-xl transition-all duration-300 cursor-pointer shadow-[0_5px_0_#e3e3e3];
+	}
+	.sidebar-icon.group svg,
+	.sidebar-icon-active.group svg {
+		@apply w-8;
+	}
 
-  .sidebar-tooltip{
-      @apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md text-white bg-gray-900 text-xs font-bold transition-all duration-100 scale-0 origin-left opacity-0
-  }
-  .sidebar-hr {
-    @apply bg-gray-200 dark:bg-gray-800 
+	.sidebar-tooltip {
+		@apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md text-white bg-gray-900 text-xs font-bold transition-all duration-100 scale-0 origin-left opacity-0 select-none;
+	}
+	.sidebar-hr {
+		@apply bg-gray-200 dark:bg-gray-800 
     border border-gray-200 dark:border-gray-800 rounded-full
     mx-2;
- }
- 
-    .top-navigation {
-    @apply flex flex-row items-center justify-evenly 
+	}
+
+	.top-navigation {
+		@apply flex flex-row items-center justify-evenly 
     bg-gray-300 dark:bg-gray-700 bg-opacity-90 
     w-full h-16 
     m-0 
     shadow-lg;
-  }
+	}
 
-  .top-navigation-icon {
-    @apply text-gray-500
+	.top-navigation-icon {
+		@apply text-gray-500
     mr-3 ml-4
     transition duration-300 ease-in-out 
     hover:text-pink-400 
     cursor-pointer;
-  }
+	}
 
-  .top-navigation-icon:first {
-    @apply ml-auto mr-4;
-  }
+	.top-navigation-icon:first {
+		@apply ml-auto mr-4;
+	}
 
-  .title-hashtag {
-    @apply text-lg tracking-wider font-semibold text-gray-500 
+	.title-hashtag {
+		@apply text-lg tracking-wider font-semibold text-gray-500 
     ml-2 my-auto;
-  }
+	}
 
-  .title-text {
-    @apply text-xl text-gray-500 tracking-wider font-semibold text-opacity-80 
+	.title-text {
+		@apply text-xl text-gray-500 tracking-wider font-semibold text-opacity-80 
     mr-auto ml-2 my-auto 
     transition duration-300 ease-in-out;
-  }
+	}
 
-  .search {
-    @apply w-1/5 flex items-center justify-start 
+	.search {
+		@apply w-1/5 flex items-center justify-start 
     bg-gray-400 dark:bg-gray-600
     text-gray-500
     px-2 h-9 ml-0 mr-0 
     rounded-md shadow-md
     transition duration-300 ease-in-out;
-  }
+	}
 
-  .search-input {
-    @apply w-full font-sans font-semibold
+	.search-input {
+		@apply w-full font-sans font-semibold
     bg-transparent outline-none 
     text-gray-500  placeholder-gray-500
     pl-1 rounded;
-  }
+	}
 
-  .content-container {
-    @apply flex flex-col 
+	.content-container {
+		@apply flex flex-col 
     bg-gray-300 dark:bg-gray-700
     m-0 
     h-full w-full 
     overflow-hidden;
-  }
+	}
 
-  .content-list {
-    @apply flex flex-col items-center 
+	.content-list {
+		@apply flex flex-col items-center 
     h-full w-full 
     mt-0 ml-0 mx-auto px-0 pb-12 
     overflow-y-scroll;
-  }
+	}
 
-  .post {
-    @apply w-full
+	.post {
+		@apply w-full
     flex flex-row items-center justify-evenly
     py-4 px-8 m-0
     cursor-pointer;
-  }
+	}
 
-  .post-selected {
-    @apply bg-green-400 dark:bg-gray-900
+	.post-selected {
+		@apply bg-green-400 dark:bg-gray-900
     shadow-md;
-  }
+	}
 
-  .post-content {
-    @apply w-4/5 
+	.post-content {
+		@apply w-4/5 
     flex flex-col justify-start 
     ml-auto;
-  }
+	}
 
-  .post-text {
-    @apply text-lg text-left text-gray-800 dark:text-white 
+	.post-text {
+		@apply text-lg text-left text-gray-800 dark:text-white 
     mr-auto whitespace-normal;
-  }
+	}
 
-  .post-owner {
-    @apply text-left font-semibold text-gray-800 dark:text-white mr-2 cursor-pointer;
-  }
+	.post-owner {
+		@apply text-left font-semibold text-gray-800 dark:text-white mr-2 cursor-pointer;
+	}
 
-  .avatar-wrapper {
-    @apply flex flex-col items-center
+	.avatar-wrapper {
+		@apply flex flex-col items-center
     w-12 
     m-0 ml-auto mb-auto;
-  }
+	}
 
-  .avatar {
-    @apply flex-none
+	.avatar {
+		@apply flex-none
     w-12 h-full 
     rounded-full shadow-md
     object-cover bg-gray-100 
     mb-auto mt-0 mx-0 
     cursor-pointer;
-  }
+	}
 
-  .timestamp {
-    @apply text-xs text-left font-semibold text-gray-500 dark:text-gray-600 ml-2;
-  }
+	.timestamp {
+		@apply text-xs text-left font-semibold text-gray-500 dark:text-gray-600 ml-2;
+	}
 
-  .bottom-bar {
-    @apply flex flex-row items-center justify-between 
+	.bottom-bar {
+		@apply flex flex-row items-center justify-between 
     fixed left-88 right-8 bottom-2 
     rounded-lg shadow-lg 
     bg-gray-400 dark:bg-gray-600 px-2
     h-12;
-  }
+	}
 
-  .bottom-bar-input {
-    @apply font-semibold w-full
+	.bottom-bar-input {
+		@apply font-semibold w-full
     bg-transparent outline-none 
     ml-0 mr-auto
     text-gray-500  dark:text-gray-400 placeholder-gray-500
     cursor-text;
-  }
+	}
 
-  .channel-bar {
-    @apply flex flex-col w-80 h-auto m-0 ml-16 bg-gray-200 dark:bg-gray-800
+	.channel-bar {
+		@apply flex flex-col w-80 h-auto m-0 ml-16 bg-gray-200 dark:bg-gray-800
      overflow-hidden;
-  }
+	}
 
-  .channel-container {
-    @apply flex flex-col items-center justify-start 
+	.channel-container {
+		@apply flex flex-col items-center justify-start 
     p-1 m-0;
-  }
+	}
 
-  .channel-block {
-    @apply flex items-center justify-center 
+	.channel-block {
+		@apply flex items-center justify-center 
     h-16 
     m-0 p-0;
-  }
+	}
 
-  .channel-block-text {
-    @apply text-lg tracking-wider font-bold 
+	.channel-block-text {
+		@apply text-lg tracking-wider font-bold 
     text-gray-600 dark:text-gray-400 
     mr-auto ml-4 my-auto align-middle;
-  }
+	}
 
-  .dropdown {
-    @apply m-0 w-full px-2 pb-2
+	.dropdown {
+		@apply m-0 w-full px-2 pb-2
     transition duration-300 ease-in-out;
-  }
+	}
 
-  .dropdown-header {
-    @apply flex flex-row items-center justify-start
+	.dropdown-header {
+		@apply flex flex-row items-center justify-start
     mx-0 text-gray-500
     cursor-pointer;
-  }
-  div.dropdown-header svg{
-    @apply w-5 h-5 mr-2
-    }
+	}
+	div.dropdown-header svg {
+		@apply w-5 h-5 mr-2;
+	}
 
-  .dropdown-header-text {
-    @apply text-gray-500  text-opacity-90 
+	.dropdown-header-text {
+		@apply text-gray-500  text-opacity-90 
     text-lg font-semibold mr-auto cursor-pointer;
-  }
+	}
 
-  .dropdown-header-text-selected {
-    @apply text-blue-500 text-opacity-90 text-lg font-bold mr-auto;
-  }
+	.dropdown-header-text-selected {
+		@apply text-blue-500 text-opacity-90 text-lg font-bold mr-auto;
+	}
 
-  .dropdown-selection {
-    @apply flex flex-row items-center justify-evenly
+	.dropdown-selection {
+		@apply flex flex-row items-center justify-evenly
     mt-1 mr-auto ml-2
     transition duration-300 ease-in-out
     cursor-pointer;
-  }
-  div.dropdown-selection svg{
-    @apply w-4 h-4 mr-2 text-slate-900
-    }
-  .dropdown-selection-text {
-    @apply text-gray-500 font-semibold tracking-wide
+	}
+	div.dropdown-selection svg {
+		@apply w-4 h-4 mr-2 text-slate-900;
+	}
+	.dropdown-selection-text {
+		@apply text-gray-500 font-semibold tracking-wide
     mr-auto 
     transition duration-300 ease-in-out 
     hover:text-pink-500 dark:hover:text-gray-500
     cursor-pointer;
-  }
+	}
 }
 
 @tailwind utilities;
 
 ::-webkit-scrollbar {
-  background-color: transparent;
+	background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-500 dark:bg-green-400;
+	@apply bg-gray-500 dark:bg-green-400;
 }

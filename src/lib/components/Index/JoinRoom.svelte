@@ -2,19 +2,18 @@
 	// @ts-nocheck
 
 	import StyledButton from '$lib/components/StyledButton.svelte';
-	import { roomCode, user, activeConversation, userName } from '$lib/stores/store';
+	import { roomCode, user, activeConversation, userName, discordUser } from '$lib/stores/store';
 	import { getTwilioAccessToken, addParticipant } from '$lib/services/chat';
 	import { goto } from '$app/navigation';
 	import { JoinConversation } from '$lib/services/user';
 	import { supabase } from '$lib/supabaseClient';
-	export let userData;
 
 	async function handleEnterServer(e) {
 		e.preventDefault();
 
 		if (!$user || $user?.token == null || $roomCode === '') return;
-		const uid = userData?.id || $user?.id;
-		const token = userData?.access_token || $user?.token;
+		const uid = $discordUser?.id || $user?.id;
+		const token = $discordUser?.access_token || $user?.token;
 		let userIdentity;
 		const { data } = await supabase
 			.from('servers')

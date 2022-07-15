@@ -1,6 +1,6 @@
 <script>
 	import StyledButton from '$lib/components/StyledButton.svelte';
-	import { roomCode, user, activeConversation } from '$lib/stores/store';
+	import { roomCode, user, activeConversation, discordUser } from '$lib/stores/store';
 	import { getTwilioAccessToken, createServer } from '$lib/services/chat';
 	import { goto } from '$app/navigation';
 	import { JoinConversation } from '$lib/services/user';
@@ -8,8 +8,8 @@
 		e.preventDefault();
 
 		if (!$user || $user?.token == null || $roomCode === '') return;
-		const access_token = userData?.access_token || $user?.token;
-		const uid = userData?.id || $user?.id;
+		const access_token = $discordUser?.access_token || $user?.token;
+		const uid = $discordUser?.id || $user?.id;
 		// We pass the userToken to the server to create a new channel/server in behalf of the user.
 		const { serverSid, conversation } = await createServer({
 			friendlyName: $roomCode,
@@ -17,7 +17,7 @@
 			access_token,
 			uid
 		});
-		const token = userData?.access_token || $user?.token;
+		const token = $discordUser?.access_token || $user?.token;
 		// Channel is created so we get the Twilio access token for the user that grants access.
 		const { accessToken, identity } = await getTwilioAccessToken({
 			token,

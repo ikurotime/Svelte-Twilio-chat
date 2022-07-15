@@ -1,13 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { getConversations, getTwilioAccessToken } from '$lib/services/chat';
-	import {
-		activeConversation,
-		activeChat,
-		discordId,
-		supabaseUserJwt,
-		isJoinRoom
-	} from '$lib/stores/store';
+	import { activeConversation, activeChat, discordUser, isJoinRoom } from '$lib/stores/store';
 	import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 	import { JoinConversation } from '$lib/services/user';
 	export let icon, tooltip, route, id, serversid, channelsid;
@@ -20,14 +14,14 @@
 		}
 		if (serversid) {
 			const { accessToken, identity } = await getTwilioAccessToken({
-				token: $supabaseUserJwt,
+				token: $discordUser.access_token,
 				serverSid: serversid
 			});
 			const chatConversation = await JoinConversation({
 				room: channelsid,
 				twilioAccessToken: accessToken,
 				identity,
-				uid: $discordId,
+				uid: $discordUser.id,
 				serverSid: serversid
 			});
 			//console.log(serversid, $discordId);

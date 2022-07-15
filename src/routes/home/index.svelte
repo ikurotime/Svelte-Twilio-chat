@@ -1,15 +1,8 @@
 <script>
-	// @ts-nocheck
-
-	import ChannelBar from '$lib/components/ChannelBar/ChannelBar.svelte';
-	import ChannelBlock from '$lib/components/ChannelBar/ChannelBlock.svelte';
 	import JoinRoom from '$lib/components/Index/JoinRoom.svelte';
-	import { session } from '$app/stores';
 	export let userData;
-	import { discordId, joinedServers, supabaseUserJwt } from '$lib/stores/store';
-	joinedServers.set(userData.servers);
-	discordId.set(userData.id);
-	supabaseUserJwt.set(userData.access_token);
+	import { discordUser } from '$lib/stores/store';
+	discordUser.set(userData);
 </script>
 
 <svelte:head>
@@ -30,4 +23,4 @@
 	</div>
 </ChannelBar> -->
 
-<JoinRoom {userData} />
+<JoinRoom />

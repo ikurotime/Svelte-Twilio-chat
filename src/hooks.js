@@ -7,7 +7,7 @@ export const handle = async ({ event, resolve }) => {
 	// Grab the cookie
 	const cookies = await cookie.parse(event.request.headers.get('cookie') || '');
 	const session = cookies.session ? JSON.parse(cookies.session) : null;
-	const { data, error } = await supabase
+	const { data } = await supabase
 		.from('servers')
 		.select('friendly_name, SID, channels(channel_friendly_name, channel_sid)');
 

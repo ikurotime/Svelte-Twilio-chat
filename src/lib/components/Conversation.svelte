@@ -1,31 +1,22 @@
 <script>
 	// @ts-nocheck
 
-	import { onMount, afterUpdate } from 'svelte';
-	import { activeConversation } from '$lib/stores/store';
+	import { afterUpdate, onMount } from 'svelte';
 	import Message from './Message.svelte';
-
+	import { activeChat, activeConversation } from '$lib/stores/store';
 	let div;
-	let messages = [];
-
 	onMount(async () => {
-		//console.log($activeConversation);
-		const paginator = await $activeConversation.getMessages();
-		messages = paginator.items;
-		//console.log(messages.at(-1));
-
 		$activeConversation.on('messageAdded', (message) => {
-			messages = [...messages, message];
+			activeChat.set([...$activeChat, message]);
 		});
 	});
-
 	afterUpdate(() => {
 		div.scrollTo(0, div.scrollHeight);
 	});
 </script>
 
 <div bind:this={div} class="bg-neutral-600 w-full flex flex-col h-full overflow-y-scroll">
-	{#each messages as message}
-		<Message {message} />
+	{#each $activeChat as message}
+		<Message body={message.body} author={message.author} />
 	{/each}
 </div>

@@ -1,8 +1,5 @@
 export const getTwilioAccessToken = async ({ token,serverSid }:{token: string,serverSid:string}) => {
-/*   console.log('getTwilioAccessToken')
-  console.log(token)
-  console.log(serverSid) */
-  if(token == null || serverSid == null) return null;
+  if(token == null) return null;
   const res = await fetch(import.meta.env.VITE_BACKEND_URL + '/get-access-token', {
   headers:{
     jwt: token,
@@ -14,7 +11,6 @@ export const getTwilioAccessToken = async ({ token,serverSid }:{token: string,se
     throw new Error('Could not get access token')
   }
   const { accessToken,identity } = await res.json()
-  console.log(accessToken)
 
   return {accessToken,identity}
 };
@@ -53,4 +49,17 @@ export const addParticipant = async ({identity,room,serverSid,uid } : { identity
   }
 
   return res
+}
+export const getConversations = async ({uid,serversid} : { uid:string,serversid:string}) => {
+  const res = await fetch(import.meta.env.VITE_BACKEND_URL + '/get-user-conversations', {
+    headers:{
+    serversid,
+    uid
+  } 
+  })
+  if(!res.ok) {
+    throw new Error('Could not get conversation')
+  }
+  const data = await res.json()
+  return data[0]
 }

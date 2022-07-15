@@ -1,8 +1,8 @@
 import { Client } from '@twilio/conversations'
 import { supabase } from '../supabaseClient'
-import { addParticipant } from './chat'
+
 export const JoinConversation = async (
-  { room, twilioAccessToken, uid,serverSid,identity} : { room:string, twilioAccessToken:string, uid:string,serverSid:string ,identity:string}
+  { room, twilioAccessToken} : { room:string, twilioAccessToken:string}
   ) => { 
   const client = new Client(twilioAccessToken)
   return new Promise(resolve => { 

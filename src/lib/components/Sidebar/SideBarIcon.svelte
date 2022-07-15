@@ -1,19 +1,60 @@
 <script>
-  import { goto } from "$app/navigation";
-  import { ACTIVE_PAGE } from "$lib/stores/homeStore";
-  export let icon,tooltip,route,id;
+	import { goto } from '$app/navigation';
+	import { getConversations, getTwilioAccessToken } from '$lib/services/chat';
+	import {
+		activeConversation,
+		activeChat,
+		discordId,
+		supabaseUserJwt,
+		isJoinRoom
+	} from '$lib/stores/store';
+	import { ACTIVE_PAGE } from '$lib/stores/homeStore';
+	import { JoinConversation } from '$lib/services/user';
+	export let icon, tooltip, route, id, serversid, channelsid;
 
-  function handleClick() {
-    if (route) {
-      goto(route);
-      ACTIVE_PAGE.set(id);
-    }
-  }
+	async function handleClick() {
+		isJoinRoom.set(true);
+		if (route) {
+			goto(route, { replaceState: true });
+			ACTIVE_PAGE.set(id);
+		}
+		if (serversid) {
+			const { accessToken, identity } = await getTwilioAccessToken({
+				token: $supabaseUserJwt,
+				serverSid: serversid
+			});
+			const chatConversation = await JoinConversation({
+				room: channelsid,
+				twilioAccessToken: accessToken,
+				identity,
+				uid: $discordId,
+				serverSid: serversid
+			});
+			console.log(serversid, $discordId);
+			if (chatConversation) {
+				activeConversation.set(null);
+				console.log(chatConversation);
+				activeConversation.set(chatConversation);
+				const paginator = await $activeConversation.getMessages();
+				activeChat.set(paginator.items);
+				console.log($activeChat);
+				isJoinRoom.set(false);
+			}
+		}
+	}
 </script>
 
-<a id={id} class={`${id === $ACTIVE_PAGE ? 'sidebar-icon-active' : 'sidebar-icon'} group `} on:click={() => handleClick(route)}>
- <svelte:component this={icon}/>
-  <span class="sidebar-tooltip group-hover:scale-100 group-hover:opacity-100">
-    {tooltip}
-  </span>
+<a
+	{id}
+	class={`${id === $ACTIVE_PAGE ? 'sidebar-icon-active' : 'sidebar-icon'} group `}
+	on:click={() => handleClick(route)}
+>
+	{#if icon}
+		<svelte:component this={icon} />
+	{:else}
+		{id[0].toUpperCase()}
+	{/if}
+	<span class="sidebar-tooltip group-hover:scale-100 group-hover:opacity-100">
+		{tooltip}
+	</span>
 </a>

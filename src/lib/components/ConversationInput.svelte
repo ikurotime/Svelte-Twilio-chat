@@ -7,7 +7,7 @@
 
 	const handleKeyDown = (e) => {
 		if (e.key === 'Enter') {
-			console.log($activeConversation);
+			//console.log($activeConversation);
 			$activeConversation.sendMessage(message, { channel: 'general' });
 			message = '';
 		}

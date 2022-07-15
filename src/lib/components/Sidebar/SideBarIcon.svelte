@@ -30,14 +30,14 @@
 				uid: $discordId,
 				serverSid: serversid
 			});
-			console.log(serversid, $discordId);
+			//console.log(serversid, $discordId);
 			if (chatConversation) {
 				activeConversation.set(null);
-				console.log(chatConversation);
+				//console.log(chatConversation);
 				activeConversation.set(chatConversation);
 				const paginator = await $activeConversation.getMessages();
 				activeChat.set(paginator.items);
-				console.log($activeChat);
+				//console.log($activeChat);
 				isJoinRoom.set(false);
 			}
 		}

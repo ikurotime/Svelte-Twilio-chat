@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+	// @ts-nocheck
 
 	import ChannelBar from '$lib/components/ChannelBar/ChannelBar.svelte';
 	import ChannelBlock from '$lib/components/ChannelBar/ChannelBlock.svelte';
@@ -7,8 +7,8 @@
 	import Conversation from '$lib/components/Conversation.svelte';
 
 	import ConversationInput from '$lib/components/ConversationInput.svelte';
-	import { activeConversation } from '$lib/stores/store';
-
+	import { activeChat, activeConversation } from '$lib/stores/store';
+	import { afterUpdate, beforeUpdate, onMount } from 'svelte';
 
 	const topics = ['tailwind-css', 'react'];
 	const questions = ['jit-compilation', 'purge-files', 'dark-mode'];
@@ -21,20 +21,20 @@
 </svelte:head>
 
 <ChannelBar>
-    <ChannelBlock text="Channels"/>
-    <div class='channel-container'>
-      <Dropdown header='Topics' selections={topics} />
-      <Dropdown header='Questions' selections={questions} />
-      <Dropdown header='Random' selections={random} />
-    </div>
- </ChannelBar>
- 
+	<ChannelBlock text="Channels" />
+	<div class="channel-container">
+		<Dropdown header="Topics" selections={topics} />
+		<Dropdown header="Questions" selections={questions} />
+		<Dropdown header="Random" selections={random} />
+	</div>
+</ChannelBar>
+
 <div class="bg-neutral-700 h-full w-full flex flex-col overflow-y-hidden">
-{#if $activeConversation?.uniqueName}
-	<h2 class="text-3xl my-2">
-		{$activeConversation?.uniqueName}
-	</h2>
+	{#if $activeConversation?.uniqueName}
+		<h2 class="text-3xl my-2">
+			{$activeConversation?.uniqueName}
+		</h2>
 		<Conversation />
-	<ConversationInput />
-{/if}
+		<ConversationInput />
+	{/if}
 </div>

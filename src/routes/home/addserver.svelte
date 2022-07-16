@@ -1,6 +1,14 @@
 <script>
 	import StyledButton from '$lib/components/StyledButton.svelte';
-	import { roomCode, user, activeConversation, discordUser, isLoading } from '$lib/stores/store';
+	import {
+		roomCode,
+		user,
+		activeConversation,
+		discordUser,
+		isLoading,
+		hasError,
+		error
+	} from '$lib/stores/store';
 	import { getTwilioAccessToken, createServer } from '$lib/services/chat';
 	import { goto } from '$app/navigation';
 	import { JoinConversation } from '$lib/services/user';
@@ -8,23 +16,33 @@
 	import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 	async function handleCreateServer(e) {
 		e.preventDefault();
-		isLoading.set(true);
-		goto(`/home/server/${$roomCode}`);
-
 		if (!$user || $user?.token == null || $roomCode === '') return;
+		isLoading.set(true);
 		const access_token = $discordUser?.access_token || $user?.token;
 		const uid = $discordUser?.id || $user?.id;
 		// We pass the userToken to the server to create a new channel/server in behalf of the user.
-		const { serverSid, conversation } = await createServer({
+		const res = await createServer({
 			friendlyName: $roomCode,
 			uniqueName: $roomCode,
 			access_token,
 			uid
 		});
+		console.log(res);
+		if (res.error) {
+			isLoading.set(false);
+			hasError.set(true);
+			error.set(res.error);
+			return;
+		}
+		goto(`/home/server/${$roomCode}`);
+		const { serverSid, conversation } = res;
 		const { data } = await supabase
 			.from('servers')
-			.select('friendly_name, SID, channels(channel_friendly_name, channel_sid)');
-		if ($discordUser) {
+			.select(
+				'friendly_name, SID, channels(channel_friendly_name, channel_sid,description), channel_members!inner(server_sid)'
+			)
+			.eq('channel_members.user_id', uid);
+		if ($discordUser !== undefined) {
 			discordUser.update((user) => {
 				user.servers = data;
 				return user;

@@ -13,18 +13,21 @@
 	let currentServer = [];
 	let currentChatname = '';
 	onMount(() => {
+		console.log($discordUser);
 		currentServer = [];
 		topics.set([]);
-		$discordUser.servers
-			.filter((server) => server.friendly_name === $page.params.room)
-			.forEach((server) => {
-				currentServer.push(server);
-				console.log(currentServer);
-				server.channels.forEach((channel) => {
-					console.log(channel.channel_friendly_name);
-					topics.set([...$topics, channel.channel_friendly_name]);
+		if ($discordUser !== undefined) {
+			$discordUser.servers
+				.filter((server) => server.friendly_name === $page.params.room)
+				.forEach((server) => {
+					currentServer.push(server);
+					console.log(currentServer);
+					server.channels.forEach((channel) => {
+						console.log(channel.channel_friendly_name);
+						topics.set([...$topics, channel.channel_friendly_name]);
+					});
 				});
-			});
+		}
 		currentChatname = currentServer[0]?.channels[0]?.channel_friendly_name;
 	});
 </script>

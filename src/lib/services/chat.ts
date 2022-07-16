@@ -27,8 +27,7 @@ export const createServer = async ({ friendlyName,uniqueName,access_token,uid }:
   })
 
   if(!res.ok) {
-    const {msg} = await res.json()
-    throw new Error(msg)
+    return {error: 'Server already exists'}
   }
 
   const { serverSid, conversation } = await res.json()

@@ -5,6 +5,7 @@ type User = {
   username: any,
   email: string,
   token: string,
+  servers: object[],
 }
 export const user = writable<User>({
   id: '',
@@ -12,6 +13,7 @@ export const user = writable<User>({
   username: '',
   email: '',
   token: '',
+  servers: [],
 })
 export const discordUser = writable({})
 export const userName = writable<string>("")
@@ -31,3 +33,5 @@ export const isRandomUser = writable<boolean>(false)
 export const accessToken = writable<string>("")
 export const activeChat = writable<string>("")
 export const topics = writable<string[]>([])
+export const error = writable<string>("")
+export const hasError = writable<boolean>(false)

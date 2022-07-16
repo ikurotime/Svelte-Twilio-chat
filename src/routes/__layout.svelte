@@ -7,6 +7,7 @@
 	import { signOut, supabase } from '$lib/supabaseClient';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
 
 	isLoadingScreen.set(true);
 	onMount(async () => {
@@ -94,4 +95,5 @@
 			<slot />
 		</main>
 	{/if}
+	<ErrorMessage />
 </div>

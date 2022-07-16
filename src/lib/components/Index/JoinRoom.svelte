@@ -8,7 +8,9 @@
 		activeConversation,
 		userName,
 		discordUser,
-		isLoading
+		isLoading,
+		hasError,
+		error
 	} from '$lib/stores/store';
 	import { getTwilioAccessToken, addParticipant } from '$lib/services/chat';
 	import { goto } from '$app/navigation';
@@ -17,9 +19,8 @@
 
 	async function handleEnterServer(e) {
 		e.preventDefault();
-		isLoading.set(true);
-		goto(`/home/server/${$roomCode}`);
 		if (!$user || $user?.token == null || $roomCode === '') return;
+		isLoading.set(true);
 		const uid = $discordUser?.id || $user?.id;
 		const token = $discordUser?.access_token || $user?.token;
 		let userIdentity;
@@ -27,7 +28,15 @@
 			.from('servers')
 			.select(`friendly_name, channels(channel_sid, server_sid,description)`)
 			.eq('friendly_name', $roomCode);
-
+		console.log(data);
+		if (data.length === 0) {
+			goto(`/home`);
+			isLoading.set(false);
+			hasError.set(true);
+			error.set("Server doesn't exist");
+			return;
+		}
+		goto(`/home/server/${$roomCode}`);
 		if (token.startsWith('anonymous')) {
 			userIdentity = token.split('_')[1];
 		} else {
@@ -52,6 +61,8 @@
 			uid,
 			serverSid: data[0].channels[0].server_sid
 		});
+		if (!$discordUser) {
+		}
 		if (chatConversation) {
 			activeConversation.set(chatConversation);
 			isLoading.set(false);

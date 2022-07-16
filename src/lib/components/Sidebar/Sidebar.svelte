@@ -9,8 +9,7 @@
 	import { goto } from '$app/navigation';
 
 	onMount(() => {
-		console.log('discordUser', $discordUser.length);
-		if ($discordUser.length === undefined) {
+		if ($discordUser?.length === undefined) {
 			goto('/home');
 		}
 	});
@@ -19,7 +18,7 @@
 <div class="fixed top-0 left-0 h-screen w-16 flex flex-col bg-neutral-900 shadow-lg">
 	<SideBarIcon id={'home'} icon={MdHome} tooltip="Home" route="/home" />
 	<Divider />
-	{#if $discordUser.servers}
+	{#if $discordUser?.servers}
 		{#each $discordUser.servers as server}
 			<SideBarIcon
 				id={server.friendly_name}

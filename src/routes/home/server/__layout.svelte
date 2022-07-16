@@ -1,8 +1,8 @@
 <script>
-	import { isJoinRoom } from '$lib/stores/store';
+	import { isLoading } from '$lib/stores/store';
 </script>
 
-{#if $isJoinRoom}
+{#if $isLoading}
 	<div class="w-full h-full grid place-content-center bg-neutral-800 text-green-600">
 		<div role="status">
 			<svg

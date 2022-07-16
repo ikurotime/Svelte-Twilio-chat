@@ -1,11 +1,15 @@
 <script>
 	import StyledButton from '$lib/components/StyledButton.svelte';
-	import { roomCode, user, activeConversation, discordUser } from '$lib/stores/store';
+	import { roomCode, user, activeConversation, discordUser, isLoading } from '$lib/stores/store';
 	import { getTwilioAccessToken, createServer } from '$lib/services/chat';
 	import { goto } from '$app/navigation';
 	import { JoinConversation } from '$lib/services/user';
+	import { supabase } from '$lib/supabaseClient';
+	import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 	async function handleCreateServer(e) {
 		e.preventDefault();
+		isLoading.set(true);
+		goto(`/home/server/${$roomCode}`);
 
 		if (!$user || $user?.token == null || $roomCode === '') return;
 		const access_token = $discordUser?.access_token || $user?.token;
@@ -17,6 +21,15 @@
 			access_token,
 			uid
 		});
+		const { data } = await supabase
+			.from('servers')
+			.select('friendly_name, SID, channels(channel_friendly_name, channel_sid)');
+		discordUser.update((user) => {
+			user.servers = data;
+			return user;
+		});
+		ACTIVE_PAGE.set($roomCode);
+
 		const token = $discordUser?.access_token || $user?.token;
 		// Channel is created so we get the Twilio access token for the user that grants access.
 		const { accessToken, identity } = await getTwilioAccessToken({
@@ -32,7 +45,7 @@
 		});
 		if (chatConversation) {
 			activeConversation.set(chatConversation);
-			goto(`/home/server/${$roomCode}`);
+			isLoading.set(false);
 		}
 	}
 </script>

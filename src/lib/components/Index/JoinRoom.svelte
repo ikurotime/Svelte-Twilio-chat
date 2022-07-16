@@ -2,7 +2,14 @@
 	// @ts-nocheck
 
 	import StyledButton from '$lib/components/StyledButton.svelte';
-	import { roomCode, user, activeConversation, userName, discordUser } from '$lib/stores/store';
+	import {
+		roomCode,
+		user,
+		activeConversation,
+		userName,
+		discordUser,
+		isLoading
+	} from '$lib/stores/store';
 	import { getTwilioAccessToken, addParticipant } from '$lib/services/chat';
 	import { goto } from '$app/navigation';
 	import { JoinConversation } from '$lib/services/user';
@@ -10,7 +17,8 @@
 
 	async function handleEnterServer(e) {
 		e.preventDefault();
-
+		isLoading.set(true);
+		goto(`/home/server/${$roomCode}`);
 		if (!$user || $user?.token == null || $roomCode === '') return;
 		const uid = $discordUser?.id || $user?.id;
 		const token = $discordUser?.access_token || $user?.token;
@@ -46,7 +54,7 @@
 		});
 		if (chatConversation) {
 			activeConversation.set(chatConversation);
-			goto(`/home/server/${$roomCode}`);
+			isLoading.set(false);
 		}
 	}
 </script>

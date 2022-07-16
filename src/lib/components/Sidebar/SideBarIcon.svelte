@@ -1,13 +1,13 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { getConversations, getTwilioAccessToken } from '$lib/services/chat';
-	import { activeConversation, activeChat, discordUser, isJoinRoom } from '$lib/stores/store';
+	import { activeConversation, activeChat, discordUser, isLoading } from '$lib/stores/store';
 	import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 	import { JoinConversation } from '$lib/services/user';
 	export let icon, tooltip, route, id, serversid, channelsid;
 
 	async function handleClick() {
-		isJoinRoom.set(true);
+		isLoading.set(true);
 		if (route) {
 			goto(route, { replaceState: true });
 			ACTIVE_PAGE.set(id);
@@ -32,7 +32,7 @@
 				const paginator = await $activeConversation.getMessages();
 				activeChat.set(paginator.items);
 				//console.log($activeChat);
-				isJoinRoom.set(false);
+				isLoading.set(false);
 			}
 		}
 	}

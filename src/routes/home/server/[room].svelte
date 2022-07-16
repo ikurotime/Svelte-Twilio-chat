@@ -7,12 +7,21 @@
 	import Conversation from '$lib/components/Conversation.svelte';
 
 	import ConversationInput from '$lib/components/ConversationInput.svelte';
-	import { activeChat, activeConversation } from '$lib/stores/store';
-	import { afterUpdate, beforeUpdate, onMount } from 'svelte';
+	import { discordUser, activeConversation, topics } from '$lib/stores/store';
+	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 
-	const topics = ['tailwind-css', 'react'];
-	const questions = ['jit-compilation', 'purge-files', 'dark-mode'];
-	const random = ['variants', 'plugins'];
+	onMount(() => {
+		topics.set([]);
+		$discordUser.servers
+			.filter((server) => server.friendly_name === $page.params.room)
+			.forEach((server) => {
+				server.channels.forEach((channel) => {
+					console.log(channel.channel_friendly_name);
+					topics.set([...$topics, channel.channel_friendly_name]);
+				});
+			});
+	});
 </script>
 
 <svelte:head>
@@ -23,9 +32,7 @@
 <ChannelBar>
 	<ChannelBlock text="Channels" />
 	<div class="channel-container">
-		<Dropdown header="Topics" selections={topics} />
-		<Dropdown header="Questions" selections={questions} />
-		<Dropdown header="Random" selections={random} />
+		<Dropdown header="Text" />
 	</div>
 </ChannelBar>
 

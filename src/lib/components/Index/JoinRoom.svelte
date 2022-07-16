@@ -25,7 +25,7 @@
 		let userIdentity;
 		const { data } = await supabase
 			.from('servers')
-			.select(`friendly_name, channels(channel_sid, server_sid)`)
+			.select(`friendly_name, channels(channel_sid, server_sid,description)`)
 			.eq('friendly_name', $roomCode);
 
 		if (token.startsWith('anonymous')) {

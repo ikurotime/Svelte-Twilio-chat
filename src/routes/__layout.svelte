@@ -13,6 +13,9 @@
 		if ($session?.aud === 'authenticated') {
 			await goto('/home');
 			isLoadingScreen.set(false);
+		} else {
+			await goto('/');
+			isLoadingScreen.set(false);
 		}
 		supabase.auth.onAuthStateChange((event, sesh) => {
 			console.log('onAuthStateChange: ', event, sesh);

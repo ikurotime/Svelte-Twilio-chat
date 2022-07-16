@@ -10,22 +10,27 @@
 	import { discordUser, activeConversation, topics } from '$lib/stores/store';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-
+	let currentServer = [];
+	let currentChatname = '';
 	onMount(() => {
+		currentServer = [];
 		topics.set([]);
 		$discordUser.servers
 			.filter((server) => server.friendly_name === $page.params.room)
 			.forEach((server) => {
+				currentServer.push(server);
+				console.log(currentServer);
 				server.channels.forEach((channel) => {
 					console.log(channel.channel_friendly_name);
 					topics.set([...$topics, channel.channel_friendly_name]);
 				});
 			});
+		currentChatname = currentServer[0]?.channels[0]?.channel_friendly_name;
 	});
 </script>
 
 <svelte:head>
-	<title>{$activeConversation.uniqueName} | Miduscussion</title>
+	<title>{currentServer[0]?.channels[0]?.channel_friendly_name} | Miduscussion</title>
 	<meta name="description" content="El chat de discusion de temas de programacion!" />
 </svelte:head>
 
@@ -36,12 +41,12 @@
 	</div>
 </ChannelBar>
 
-<div class="bg-neutral-700 h-full w-full flex flex-col overflow-y-hidden">
-	{#if $activeConversation?.uniqueName}
-		<h2 class="text-3xl my-2">
-			{$activeConversation?.uniqueName}
-		</h2>
+<div class="dark:bg-gray-700 h-full w-full flex flex-col overflow-y-hidden text-gray-400">
+	{#if currentServer}
+		<h1 class=" border-b border-gray-900 px-5 py-2">
+			# {currentChatname} &nbsp;|&nbsp; {currentServer[0]?.channels[0]?.description}
+		</h1>
 		<Conversation />
-		<ConversationInput />
+		<ConversationInput {currentChatname} />
 	{/if}
 </div>

@@ -29,8 +29,7 @@
 				activeConversation.set(null);
 				//console.log(chatConversation);
 				activeConversation.set(chatConversation);
-				const paginator = await $activeConversation.getMessages();
-				activeChat.set(paginator.items);
+
 				//console.log($activeChat);
 				isLoading.set(false);
 			}

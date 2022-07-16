@@ -29,7 +29,7 @@
 			/>
 		{/each}
 	{/if}
-	<SideBarIcon id={'add'} icon={MdAdd} tooltip="Add Chat" route="/home/addserver" />
 	<Divider />
+	<SideBarIcon id={'add'} icon={MdAdd} tooltip="Add Chat" route="/home/addserver" />
 	<SideBarIcon id={'settings'} icon={MdSettings} tooltip="Settings" route="/home/settings" />
 </div>

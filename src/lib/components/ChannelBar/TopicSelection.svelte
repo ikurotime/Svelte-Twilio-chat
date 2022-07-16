@@ -1,9 +1,9 @@
 <script>
-  export let selection = ''
-  import FaHashtag from 'svelte-icons/fa/FaHashtag.svelte'
+	export let topic = '';
+	import FaHashtag from 'svelte-icons/fa/FaHashtag.svelte';
 </script>
 
-<div class='dropdown-selection'>
-  <FaHashtag />
-  <h5 class='dropdown-selection-text'>{selection}</h5>
+<div class="dropdown-selection">
+	<FaHashtag />
+	<h5 class="dropdown-selection-text">{topic}</h5>
 </div>

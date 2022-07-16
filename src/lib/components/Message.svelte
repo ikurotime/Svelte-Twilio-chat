@@ -1,10 +1,7 @@
 <script>
-	// @ts-nocheck
-
 	import { userName } from '$lib/stores/store';
 
 	export let body, author;
-
 	let userOrigin =
 		author === $userName ? 'text-end place-self-end bg-neutral-400' : 'text-start bg-neutral-700';
 </script>

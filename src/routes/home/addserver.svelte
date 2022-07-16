@@ -24,10 +24,13 @@
 		const { data } = await supabase
 			.from('servers')
 			.select('friendly_name, SID, channels(channel_friendly_name, channel_sid)');
-		discordUser.update((user) => {
-			user.servers = data;
-			return user;
-		});
+		if ($discordUser) {
+			discordUser.update((user) => {
+				user.servers = data;
+				return user;
+			});
+		}
+
 		ACTIVE_PAGE.set($roomCode);
 
 		const token = $discordUser?.access_token || $user?.token;

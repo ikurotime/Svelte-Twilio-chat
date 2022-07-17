@@ -26,10 +26,12 @@
 		let userIdentity;
 		const { data } = await supabase
 			.from('servers')
-			.select(`friendly_name, channels(channel_sid, server_sid,description)`)
+			.select(
+				`friendly_name, channels!channels_server_sid_fkey(channel_sid, server_sid,description)`
+			)
 			.eq('friendly_name', $roomCode);
 		console.log(data);
-		if (data.length === 0) {
+		if (data?.length === 0) {
 			goto(`/home`);
 			isLoading.set(false);
 			hasError.set(true);

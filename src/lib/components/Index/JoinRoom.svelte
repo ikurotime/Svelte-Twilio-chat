@@ -26,9 +26,7 @@
 		let userIdentity;
 		const { data } = await supabase
 			.from('servers')
-			.select(
-				`friendly_name, channels!channels_server_sid_fkey(channel_sid, server_sid,description)`
-			)
+			.select(`friendly_name, channels!channels_server_id_fkey(channel_id, server_id,description)`)
 			.eq('friendly_name', $roomCode);
 		console.log(data);
 		if (data?.length === 0) {

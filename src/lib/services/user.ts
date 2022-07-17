@@ -36,7 +36,7 @@ export const createDefaultChannels = async (
           if(conversation) {
             // Insert the conversation into the database
             await supabase.from('channels').insert({
-              server_sid: serverSid, channel_friendly_name: 'general', channel_sid: conversation.sid,created_by:id
+              id: serverSid, friendly_name: 'general', channel_id: conversation.sid
             })
           }
         } catch (error) {

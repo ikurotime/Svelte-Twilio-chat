@@ -30,9 +30,7 @@
 			const { data, error } = await supabase.from('users').insert([
 				{
 					id: uid,
-					username: $userName,
-					status: null,
-					SID: null
+					username: $userName
 				}
 			]);
 			//console.log(data);

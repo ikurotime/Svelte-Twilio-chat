@@ -27,7 +27,7 @@
 			access_token,
 			uid
 		});
-		console.log(res);
+		//console.log(res);
 		if (res.error) {
 			isLoading.set(false);
 			hasError.set(true);
@@ -39,7 +39,7 @@
 		const { data } = await supabase
 			.from('servers')
 			.select(
-				'friendly_name, id, channels!channel_members(friendly_name, channel_id,description), channel_members!inner(server_id)'
+				'friendly_name, id, channels!channel_members(friendly_name,id,description), channel_members!inner(server_id)'
 			)
 			.eq('channel_members.user_id', uid);
 		if ($discordUser !== undefined) {

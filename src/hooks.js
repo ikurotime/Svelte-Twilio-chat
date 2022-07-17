@@ -10,7 +10,7 @@ export const handle = async ({ event, resolve }) => {
 	const { data } = await supabase
 		.from('servers')
 		.select(
-			'friendly_name, id, channels!channel_members(friendly_name, channel_id,description), channel_members!inner(server_id)'
+			'friendly_name, id, channels!channel_members(friendly_name,id,description), channel_members!inner(server_id)'
 		)
 		.eq('channel_members.user_id', session?.user.id);
 	// If the session is in the cookie, asign it to the SvelteKit's store in order to work with getStore()

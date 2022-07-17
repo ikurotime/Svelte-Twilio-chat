@@ -7,7 +7,7 @@
 	let div;
 	let messages = [];
 	const handleMessage = (message) => {
-		console.log('here');
+		//console.log('here');
 		messages = [...messages, message];
 	};
 	onMount(async () => {

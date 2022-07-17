@@ -18,10 +18,19 @@
 			await goto('/');
 			isLoadingScreen.set(false);
 		}
-		supabase.auth.onAuthStateChange((event, sesh) => {
-			console.log('onAuthStateChange: ', event, sesh);
+		supabase.auth.onAuthStateChange(async (event, sesh) => {
 			if (event === 'SIGNED_IN' && $session === null) {
-				// Set cookie
+				//console.log('onAuthStateChange: ', event, sesh);
+				const { data } = await supabase.from('users').select('*').eq('id', sesh.user.id);
+				//console.log(data);
+				//console.log(data.length);
+				if (data.length === 0) {
+					const res = await supabase.from('users').insert({
+						id: sesh.user.id,
+						username: sesh.user.user_metadata.name
+					});
+					//console.log(res);
+				}
 				fetch('/api/cookie/', {
 					method: 'POST',
 					body: JSON.stringify(sesh)

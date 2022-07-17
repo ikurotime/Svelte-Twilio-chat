@@ -13,7 +13,7 @@
 	let currentServer = [];
 	let currentChatname = '';
 	onMount(() => {
-		console.log($discordUser);
+		//console.log($discordUser);
 		currentServer = [];
 		topics.set([]);
 		if ($discordUser !== undefined) {
@@ -21,19 +21,19 @@
 				.filter((server) => server.friendly_name === $page.params.room)
 				.forEach((server) => {
 					currentServer.push(server);
-					console.log(currentServer);
+					//console.log(currentServer);
 					server.channels.forEach((channel) => {
-						console.log(channel.channel_friendly_name);
-						topics.set([...$topics, channel.channel_friendly_name]);
+						//console.log(channel.friendly_name);
+						topics.set([...$topics, channel.friendly_name]);
 					});
 				});
 		}
-		currentChatname = currentServer[0]?.channels[0]?.channel_friendly_name;
+		currentChatname = currentServer[0]?.channels[0]?.friendly_name;
 	});
 </script>
 
 <svelte:head>
-	<title>{currentServer[0]?.channels[0]?.channel_friendly_name} | Miduscussion</title>
+	<title>{currentServer[0]?.channels[0]?.friendly_name} | Miduscussion</title>
 	<meta name="description" content="El chat de discusion de temas de programacion!" />
 </svelte:head>
 

@@ -28,7 +28,8 @@
 			.from('servers')
 			.select(`friendly_name, channels!channels_server_id_fkey(id, server_id,description)`)
 			.eq('friendly_name', $roomCode);
-		//console.log(data);
+		//console.log(data)
+
 		if (data?.length === 0) {
 			goto(`/home`);
 			isLoading.set(false);
@@ -46,20 +47,20 @@
 		}
 		await addParticipant({
 			identity: userIdentity,
-			room: data[0].channels[0].channel_sid,
-			serverSid: data[0].channels[0].server_sid,
+			room: data[0].channels[0].id,
+			serverSid: data[0].channels[0].server_id,
 			uid
 		});
 		const { accessToken, identity } = await getTwilioAccessToken({
 			token,
-			serverSid: data[0].channels[0].server_sid
+			serverSid: data[0].channels[0].server_id
 		});
 		const chatConversation = await JoinConversation({
-			room: data[0].channels[0].channel_sid,
+			room: data[0].channels[0].id,
 			twilioAccessToken: accessToken,
 			identity,
 			uid,
-			serverSid: data[0].channels[0].server_sid
+			serverSid: data[0].channels[0].server_id
 		});
 		if (!$discordUser) {
 		}

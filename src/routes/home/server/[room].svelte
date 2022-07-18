@@ -13,7 +13,7 @@
 	let currentServer = [];
 	let currentChatname = '';
 	onMount(() => {
-		//console.log($discordUser);
+		//console.log($activeConversation);
 		currentServer = [];
 		topics.set([]);
 		if ($discordUser !== undefined) {
@@ -28,7 +28,7 @@
 					});
 				});
 		}
-		currentChatname = currentServer[0]?.channels[0]?.friendly_name;
+		currentChatname = currentServer[0]?.channels[0]?.friendly_name ||  $activeConversation.channelState.friendlyName;
 	});
 </script>
 

@@ -39,7 +39,7 @@
 		const { data } = await supabase
 			.from('servers')
 			.select(
-				'friendly_name, id, channels(friendly_name,id,description), channel_members!inner(server_id)'
+				'friendly_name, id, channels!channels_server_id_fkey(friendly_name,id,description), channel_members!inner(server_id)'
 			)
 			.eq('channel_members.user_id', uid);
 		if ($discordUser !== undefined) {

@@ -24,8 +24,8 @@
 				id={server.friendly_name}
 				tooltip={server.friendly_name}
 				route={'/home/server/' + server.friendly_name}
-				serversid={server.SID}
-				channelsid={server.channels[0].channel_sid}
+				serversid={server.id}
+				channelsid={server.channels[0].id}
 			/>
 		{/each}
 	{/if}

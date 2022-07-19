@@ -7,14 +7,16 @@
 	import Conversation from '$lib/components/Conversation.svelte';
 
 	import ConversationInput from '$lib/components/ConversationInput.svelte';
-	import { discordUser, activeConversation, topics } from '$lib/stores/store';
+	import { discordUser, activeConversation, topics, userName, colorNames } from '$lib/stores/store';
 	import { onMount } from 'svelte';
-	import { page } from '$app/stores';
+	import { page, session } from '$app/stores';
 	import { draggable } from '@neodrag/svelte'
+import { identity } from 'svelte/internal';
 	let innerWidth = window.innerWidth;
 
 	let currentServer = [];
 	let currentChatname = '';
+	let participants = [];
 	onMount(() => {
 		//console.log($activeConversation);
 		currentServer = [];
@@ -32,6 +34,8 @@
 				});
 		}
 		currentChatname = currentServer[0]?.channels[0]?.friendly_name ||  $activeConversation.channelState.friendlyName;
+		participants = [...$activeConversation.participants];
+		console.log(participants);
 	});
 </script>
 
@@ -46,29 +50,43 @@
 		<Dropdown header="Text" />
 	</div>
 </ChannelBar>
-{#if innerWidth < 640}
-<div class="fixed h-full w-full" use:draggable={{axis: 'x',bounds: { right: -300 }}}>
-	<div  class={`handle dark:bg-neutral-700 h-full w-full flex flex-col overflow-y-hidden text-gray-400`}>
-		{#if currentServer}
+<div class="flex w-full h-full flex-col">
+	{#if currentServer}
+	<div class="border-b border-neutral-600 p-3">
+		<h1 class="text-white">
+			# {currentChatname} &nbsp;|&nbsp; {currentServer[0]?.channels[0]?.description}
+		</h1>
+	</div>
+		{/if}
+		<div class="flex flex-row h-full w-full">
+	{#if innerWidth < 640}
+	<div class="fixed h-full w-full mt-auto " use:draggable={{axis: 'x',bounds: { right: -300 }}}>
+		<div  class={`handle dark:bg-[#363535] h-full w-full flex flex-col overflow-y-hidden text-gray-400`}>
+			{#if currentServer}
 			<h1 class=" border-b border-gray-900 px-5 py-2">
 				# {currentChatname} &nbsp;|&nbsp; {currentServer[0]?.channels[0]?.description}
 			</h1>
 			<Conversation />
 			<ConversationInput {currentChatname} />
-		{/if}
+			{/if}
+		</div>
 	</div>
-</div>
-{:else}
-
-<div  class={` handle dark:bg-neutral-700 h-full w-full flex flex-col overflow-y-hidden text-gray-400`}>
-	{#if currentServer}
-		<h1 class=" border-b border-gray-900 px-5 py-2">
-			# {currentChatname} &nbsp;|&nbsp; {currentServer[0]?.channels[0]?.description}
-		</h1>
+	{:else}
+	<div  class={` handle dark:bg-[#363535] h-full w-full flex-1	 flex flex-col  overflow-y-hidden text-gray-400`}>
 		<Conversation />
 		<ConversationInput {currentChatname} />
+	</div>
 	{/if}
+	
+	<div class="min-w-[250px] h-full pt-14 px-3">
+		{#each participants as participant}
+		<div class="flex p-3 gap-3 items-center">
+			<img src={ participant[1].identity === $userName ? $session?.user_metadata?.avatar_url : `https://avatars.dicebear.com/api/open-peeps/${participant[1].identity}.svg`} class="w-10 h-10 rounded-full bg-white " alt={$session?.user_metadata?.full_name} />
+			<span class={$colorNames[participant[1].identity.length]}>{participant[1].identity}</span>
+		</div>
+		{/each}
+	</div>
+	</div>
 </div>
-
-{/if}
-<svelte:window bind:innerWidth/>
+	<svelte:window bind:innerWidth/>
+	

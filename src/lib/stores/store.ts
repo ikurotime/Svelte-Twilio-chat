@@ -23,6 +23,38 @@ export const SECOND_TAB = "SECOND_TAB";
 export const ACTIVE_TAB = 'inline-block p-4 text-blue-400 bg-gray-100 rounded-t-lg'
 export const UNACTIVE_TAB = "inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 ";
 
+export const colorNames = writable<string[]>([
+  "text-green-500",
+  "text-blue-500",
+  "text-red-500",
+  "text-yellow-500",
+  "text-orange-500",
+  "text-purple-500",
+  "text-indigo-500",
+  "text-pink-500",
+  "text-teal-500",
+  "text-cyan-500",
+  "text-green-500",
+  "text-blue-500",
+  "text-red-500",
+  "text-yellow-500",
+  "text-orange-500",
+  "text-purple-500",
+  "text-indigo-500",
+  "text-pink-500",
+  "text-teal-500",
+  "text-cyan-500",
+  "text-green-500",
+  "text-blue-500",
+  "text-red-500",
+  "text-yellow-500",
+  "text-orange-500",
+  "text-purple-500",
+  "text-indigo-500",
+  "text-pink-500",
+  "text-teal-500",
+  "text-cyan-500",
+])
 export const isLoading = writable<boolean>(true)
 export const isLoadingScreen = writable<boolean>(true)
 export const isCreatingRoom = writable<boolean>(false)

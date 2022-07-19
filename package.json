@@ -31,6 +31,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@joeattardi/emoji-button": "^4.6.4",
 		"@neodrag/svelte": "^1.2.3",
 		"@supabase/supabase-js": "^1.35.4",
 		"@twilio/conversations": "^2.1.0",

@@ -17,6 +17,8 @@
 	import { JoinConversation } from '$lib/services/user';
 	import { supabase } from '$lib/supabaseClient';
 	import { draggable } from '@neodrag/svelte'
+	import MdShare from 'svelte-icons/md/MdShare.svelte';
+	import {session} from '$app/stores'
 	let innerWidth = window.innerWidth;
 
 	async function handleEnterServer(e) {
@@ -94,21 +96,34 @@ use:draggable={{axis: 'x',bounds: { right: -64 }}}>
 
 </div>
 {:else}
-<form
-on:submit={handleEnterServer}
-class={`p-10 bg-neutral-800  h-full w-full grid place-content-center gap-3 justify-items-center `}
->
-<p class="text-white">ENTER YOUR SERVER CODE</p>
-<div class="flex gap-3">
-	<input type="text" bind:value={$roomCode} class="p-3 rounded text-center" />
-	<StyledButton
-		text="ENTER SERVER"
-		onClick={() => {}}
-		type="submit"
-		className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm"
-		icon={null}
-	/>
+<div class="h-full w-full flex flex-col">
+
+	<div class="grid place-content-end bg-neutral-900 w-full">
+		<div class="flex items-center gap-3 text-white mt-auto px-5 py-4 ">
+			<img
+				src={$session?.user_metadata?.avatar_url}
+				class="w-8 h-8 rounded-full"
+				alt={$session?.user_metadata?.full_name}
+			/>
+			{$userName}
+		</div>
+	</div>
+	<form
+	on:submit={handleEnterServer}
+	class={`p-10 bg-neutral-800  h-full w-full grid place-content-center gap-3 justify-items-center `}
+	>
+	<p class="text-white">ENTER YOUR SERVER CODE</p>
+	<div class="flex gap-3">
+		<input type="text" bind:value={$roomCode} class="p-3 rounded text-center" />
+		<StyledButton
+			text="ENTER SERVER"
+			onClick={() => {}}
+			type="submit"
+			className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm"
+			icon={null}
+		/>
+	</div>
+	</form>
 </div>
-</form>
 {/if}
 <svelte:window bind:innerWidth/>

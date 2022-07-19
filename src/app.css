@@ -194,7 +194,7 @@
 	}
 
 	.dropdown-header-text-selected {
-		@apply text-blue-500 text-opacity-90 text-lg font-bold mr-auto;
+		@apply text-green-500 text-opacity-90 text-lg font-bold mr-auto;
 	}
 
 	.dropdown-selection {

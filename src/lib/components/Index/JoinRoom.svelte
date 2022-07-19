@@ -16,6 +16,8 @@
 	import { goto } from '$app/navigation';
 	import { JoinConversation } from '$lib/services/user';
 	import { supabase } from '$lib/supabaseClient';
+	import { draggable } from '@neodrag/svelte'
+	let innerWidth = window.innerWidth;
 
 	async function handleEnterServer(e) {
 		e.preventDefault();
@@ -70,20 +72,43 @@
 		}
 	}
 </script>
+{#if innerWidth < 640}
+<div class="w-full" 
+use:draggable={{axis: 'x',bounds: { right: -64 }}}>
+	<form
+		on:submit={handleEnterServer}
+		class={`${ innerWidth > 640 ? '' : 'handle'} p-10 bg-neutral-800  h-full w-full grid place-content-center gap-3 justify-items-center `}
+	>
+		<p class="text-white">ENTER YOUR SERVER CODE</p>
+		<div class="flex gap-3">
+			<input type="text" bind:value={$roomCode} class="p-3 rounded text-center" />
+			<StyledButton
+				text="ENTER SERVER"
+				onClick={() => {}}
+				type="submit"
+				className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm"
+				icon={null}
+			/>
+		</div>
+	</form>
 
+</div>
+{:else}
 <form
-	on:submit={handleEnterServer}
-	class="p-10 bg-neutral-800 rounded h-full w-full grid place-content-center gap-3 justify-items-center "
+on:submit={handleEnterServer}
+class={`p-10 bg-neutral-800  h-full w-full grid place-content-center gap-3 justify-items-center `}
 >
-	<p class="text-white">ENTER YOUR SERVER CODE</p>
-	<div class="flex gap-3">
-		<input type="text" bind:value={$roomCode} class="p-3 rounded text-center" />
-		<StyledButton
-			text="ENTER SERVER"
-			onClick={() => {}}
-			type="submit"
-			className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm"
-			icon={null}
-		/>
-	</div>
+<p class="text-white">ENTER YOUR SERVER CODE</p>
+<div class="flex gap-3">
+	<input type="text" bind:value={$roomCode} class="p-3 rounded text-center" />
+	<StyledButton
+		text="ENTER SERVER"
+		onClick={() => {}}
+		type="submit"
+		className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm"
+		icon={null}
+	/>
+</div>
 </form>
+{/if}
+<svelte:window bind:innerWidth/>

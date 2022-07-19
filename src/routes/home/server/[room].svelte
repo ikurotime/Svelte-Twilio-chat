@@ -10,6 +10,9 @@
 	import { discordUser, activeConversation, topics } from '$lib/stores/store';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import { draggable } from '@neodrag/svelte'
+	let innerWidth = window.innerWidth;
+
 	let currentServer = [];
 	let currentChatname = '';
 	onMount(() => {
@@ -43,8 +46,21 @@
 		<Dropdown header="Text" />
 	</div>
 </ChannelBar>
+{#if innerWidth < 640}
+<div class="fixed h-full w-full" use:draggable={{axis: 'x',bounds: { right: -300 }}}>
+	<div  class={`handle dark:bg-neutral-700 h-full w-full flex flex-col overflow-y-hidden text-gray-400`}>
+		{#if currentServer}
+			<h1 class=" border-b border-gray-900 px-5 py-2">
+				# {currentChatname} &nbsp;|&nbsp; {currentServer[0]?.channels[0]?.description}
+			</h1>
+			<Conversation />
+			<ConversationInput {currentChatname} />
+		{/if}
+	</div>
+</div>
+{:else}
 
-<div class="dark:bg-gray-700 h-full w-full flex flex-col overflow-y-hidden text-gray-400">
+<div  class={` handle dark:bg-neutral-700 h-full w-full flex flex-col overflow-y-hidden text-gray-400`}>
 	{#if currentServer}
 		<h1 class=" border-b border-gray-900 px-5 py-2">
 			# {currentChatname} &nbsp;|&nbsp; {currentServer[0]?.channels[0]?.description}
@@ -53,3 +69,6 @@
 		<ConversationInput {currentChatname} />
 	{/if}
 </div>
+
+{/if}
+<svelte:window bind:innerWidth/>

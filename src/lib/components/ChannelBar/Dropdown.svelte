@@ -8,16 +8,16 @@
 </script>
 
 <div class="dropdown">
-	<div on:click={() => (expanded = !expanded)} class="dropdown-header">
-		<ChevronIcon />
+	<div class="dropdown-header">
+		<ChevronIcon {expanded}/>
 		<h5 class={expanded ? 'dropdown-header-text-selected' : 'dropdown-header-text'}>
 			{header}
 		</h5>
-		<MdAdd />
 	</div>
-	{#if expanded && $topics}
-		{#each $topics as topic}
-			<TopicSelection {topic} />
-		{/each}
-	{/if}
+	<MdAdd />
 </div>
+{#if expanded && $topics}
+	{#each $topics as topic}
+		<TopicSelection {topic} />
+	{/each}
+{/if}

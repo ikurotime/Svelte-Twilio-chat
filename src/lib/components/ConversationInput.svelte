@@ -16,10 +16,10 @@
 
 <svelte:window on:keydown={handleKeyDown} />
 
-<div class="grow-0 bg-gray-700 p-5">
+<div class="grow-0 bg-neutral-700 p-5">
 	<input
 		type="text"
-		class="p-3 border-2 border-neutral-700 w-full rounded-xl bg-gray-600"
+		class="p-3 border-2 border-neutral-700 w-full rounded-xl bg-neutral-600"
 		placeholder={`Enviar mensaje a ${currentChatname}...`}
 		bind:value={message}
 	/>

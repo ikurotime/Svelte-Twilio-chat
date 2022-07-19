@@ -3,11 +3,11 @@
 
 	export let body, author;
 	let userOrigin =
-		author === $userName ? 'text-end place-self-end bg-slate-400' : 'text-start bg-slate-700';
+		author === $userName ? ' place-self-end ' : 'text-start ';
 </script>
 
 <div class={`m-2 w-fit ${userOrigin} rounded px-3 pb-2`}>
-	<small class="text-xs text-black">{author}</small>
+	<small class="text-xs text-white">{author}</small>
 	<p class="m-0 p-0 text-white">
 		{body}
 	</p>

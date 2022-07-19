@@ -1,5 +1,5 @@
 <script>
-import { expanded } from "$lib/stores/channelStore";
+export let expanded
 import FaChevronDown from 'svelte-icons/fa/FaChevronDown.svelte'
 import FaChevronRight from 'svelte-icons/fa/FaChevronRight.svelte'
 </script>

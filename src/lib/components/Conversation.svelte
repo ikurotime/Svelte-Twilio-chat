@@ -25,7 +25,7 @@
 	});
 </script>
 
-<div bind:this={div} class="bg-gray-700 w-full flex flex-col h-full overflow-y-scroll">
+<div bind:this={div} class="bg-[#363535] w-full flex flex-col h-full overflow-y-scroll">
 	{#each messages as message}
 		<Message body={message.body} author={message.author} />
 	{/each}

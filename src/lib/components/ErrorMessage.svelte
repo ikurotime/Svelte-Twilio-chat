@@ -13,7 +13,7 @@
 </script>
 
 <div
-	class={`absolute right-5 top-5 bg-red-600 shadow-lg mx-auto w-96 max-w-full text-sm pointer-events-auto bg-clip-padding rounded-lg block mb-3 transition-all ${
+	class={`absolute right-5 top-5 bg-red-600 shadow-lg mx-auto w-48 md:w-96 max-w-full text-sm pointer-events-auto bg-clip-padding rounded-lg block mb-3 transition-all ${
 		$hasError ? 'opacity-1' : 'opacity-0'
 	} `}
 	id="static-example"

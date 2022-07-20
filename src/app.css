@@ -164,9 +164,6 @@
     h-16 
     m-0 p-0;
 	}
-	div.channel-block svg {
-		@apply w-6 h-6 mr-auto;
-	}
 
 	.channel-block-text {
 		@apply text-lg tracking-wider font-bold 
@@ -206,9 +203,7 @@
 	div.dropdown-selection svg {
 		@apply w-4 h-4 mr-2 text-slate-900;
 	}
-	div.channel-bar svg {
-		@apply w-4 h-4 mr-2 text-gray-400 ;
-	}
+
 	.dropdown-selection-text {
 		@apply text-gray-500 font-semibold tracking-wide
     mr-auto 
@@ -228,6 +223,101 @@
 }
 
 ::-webkit-scrollbar-thumb {
-	@apply bg-gray-500 dark:bg-green-400;
+	@apply bg-gray-500 dark:bg-neutral-400;
 }
 
+/**
+ * ==============================================
+ * Dot Elastic
+ * ==============================================
+ */
+ .dot-elastic {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 5px;
+  background-color: #D3D3D3;
+  color: #D3D3D3;
+  animation: dotElastic 1s infinite linear;
+}
+
+.dot-elastic::before, .dot-elastic::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+
+.dot-elastic::before {
+  left: -15px;
+  width: 6px;
+  height: 6px;
+  border-radius: 5px;
+  background-color: #D3D3D3;
+  color: #D3D3D3;
+  animation: dotElasticBefore 1s infinite linear;
+}
+
+.dot-elastic::after {
+  left: 15px;
+  width: 6px;
+  height: 6px;
+  border-radius: 5px;
+  background-color: #D3D3D3;
+  color: #D3D3D3;
+  animation: dotElasticAfter 1s infinite linear;
+}
+
+@keyframes dotElasticBefore {
+  0% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(1, 1.5);
+  }
+  50% {
+    transform: scale(1, 0.67);
+  }
+  75% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes dotElastic {
+  0% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1, 1.5);
+  }
+  75% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes dotElasticAfter {
+  0% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1, 0.67);
+  }
+  75% {
+    transform: scale(1, 1.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}

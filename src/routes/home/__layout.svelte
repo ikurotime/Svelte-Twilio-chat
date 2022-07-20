@@ -1,12 +1,13 @@
 <script>
 	import Sidebar from '$lib/components/Sidebar/Sidebar.svelte';
-	import { userName } from '$lib/stores/store';
+	import { user, userName } from '$lib/stores/store';
 	import { session } from '$app/stores';
 	import { onMount } from 'svelte';
 	onMount(() => {
 		if (!$userName) {
-			userName.set($session.user_metadata.full_name);
+			userName.set($session?.user_metadata?.full_name);
 		}
+		console.log($user)
 	});
 </script>
 

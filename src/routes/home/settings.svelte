@@ -6,7 +6,7 @@
 <div
 	class="p-10 bg-neutral-800 rounded h-full w-full grid place-content-center gap-3 justify-items-center "
 >
-	<p class="text-white">CREATE YOUR SERVER</p>
+	<p class="text-white">SIGN OUT</p>
 	<div class="flex gap-3">
 		<StyledButton
 			text="SignOut"

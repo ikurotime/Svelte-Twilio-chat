@@ -61,6 +61,7 @@ export const isCreatingRoom = writable<boolean>(false)
 export const roomCode = writable<string>("")
 export const activeConversation = writable<string>("")
 export const isRandomUser = writable<boolean>(false)
+export const isInvited = writable<boolean>(false)
 
 export const accessToken = writable<string>("")
 export const activeChat = writable<string>("")

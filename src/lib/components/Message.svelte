@@ -58,7 +58,7 @@ import { session } from '$app/stores';
 		</p>
 		
 		{/if}
-		<p class={`text-sm p-0 text-white ${newUser ? '' : 'ml-0'}`} >
+		<p class={`text-sm p-0 text-white ${newUser ? '' : 'ml-0'} whitespace-pre-line`} >
 			{message.body}
 		</p>
 	</div>

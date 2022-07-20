@@ -23,6 +23,8 @@
 
 			return user;
 		});
+		
+		console.log($user)
 		const { data, error } = await supabase.from('users').select('id').eq('username', $userName);
 		//console.log(data);
 		//console.log(error);

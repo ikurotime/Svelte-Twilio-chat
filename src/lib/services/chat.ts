@@ -40,7 +40,24 @@ export const createServer = async ({ friendlyName,uniqueName,access_token,uid }:
   const { serverSid, conversation } = await res.json()
   return {serverSid, conversation}
 };
+export const createChannel = async ({ friendlyName,access_token,uid }:{friendlyName: string,access_token:string,uid:string}) => {
+  var headers = new Headers();
 
+  headers.append('Accept', 'application/json'); // This one is enough for GET requests
+  headers.append('Content-Type', 'application/json'); // This one sends body
+  const res = await fetch(import.meta.env.VITE_BACKEND_URL + '/create-server', {
+    headers: headers,
+    method: 'POST',
+    body: JSON.stringify({friendlyName,access_token,uid})
+  })
+
+  if(!res.ok) {
+    return {error: 'Server already exists'}
+  }
+
+  const { serverSid, conversation } = await res.json()
+  return {serverSid, conversation}
+};
 export const addParticipant = async ({identity,room,serverSid,uid } : { identity:string, room: string ,serverSid:string,uid: string}) => {
   var headers = new Headers();
 

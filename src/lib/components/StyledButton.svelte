@@ -12,7 +12,7 @@
 	on:click={onClick}
 	{type}
 >
-	<div class="flex flex-row gap-3  items-center">
+	<div class="flex flex-row gap-3 items-center justify-center">
 		{text}
 		{#if icon !== null}
 			<img class="w-7 h-7" src={icon} alt="random" />

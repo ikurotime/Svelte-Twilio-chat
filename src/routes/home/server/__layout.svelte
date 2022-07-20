@@ -1,5 +1,6 @@
 <script>
-	import { isLoading } from '$lib/stores/store';
+	import { isLoading} from '$lib/stores/store';
+
 </script>
 
 {#if $isLoading}

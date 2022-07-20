@@ -2,6 +2,7 @@
 	import JoinRoom from '$lib/components/Index/JoinRoom.svelte';
 	export let userData;
 	import { discordUser } from '$lib/stores/store';
+	
 	discordUser.set(userData);
 </script>
 

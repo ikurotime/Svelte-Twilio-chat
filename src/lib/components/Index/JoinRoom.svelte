@@ -30,7 +30,7 @@
 		let userIdentity;
 		const { data } = await supabase
 			.from('servers')
-			.select(`friendly_name, channels!channels_server_id_fkey(id, server_id,description)`)
+			.select(`id,friendly_name, channels!channels_server_id_fkey(id, server_id,description)`)
 			.eq('friendly_name', $roomCode);
 		//console.log(data)
 
@@ -59,6 +59,19 @@
 			token,
 			serverSid: data[0].channels[0].server_id
 		});
+		const resp = await supabase
+			.from('servers')
+			.select(
+				'friendly_name, id, channels!channels_server_id_fkey(friendly_name,id,description), channel_members!inner(server_id)'
+			)
+			.eq('channel_members.user_id', uid);
+			console.log(resp)
+		user.update((user) => {
+        user.servers = resp.data;
+        return user;
+      });
+      localStorage.setItem('user', JSON.stringify($user));
+			console.log($user)
 		const chatConversation = await JoinConversation({
 			room: data[0].channels[0].id,
 			twilioAccessToken: accessToken,
@@ -66,8 +79,7 @@
 			uid,
 			serverSid: data[0].channels[0].server_id
 		});
-		if (!$discordUser) {
-		}
+
 		if (chatConversation) {
 			activeConversation.set(chatConversation);
 			isLoading.set(false);
@@ -101,11 +113,11 @@ use:draggable={{axis: 'x',bounds: { right: -64 }}}>
 	<div class="grid place-content-end bg-neutral-900 w-full">
 		<div class="flex items-center gap-3 text-white mt-auto px-5 py-4 ">
 			<img
-				src={$session?.user_metadata?.avatar_url}
+				src={$session?.user_metadata?.avatar_url || $user.avatar}
 				class="w-8 h-8 rounded-full"
-				alt={$session?.user_metadata?.full_name}
+				alt={$session?.user_metadata?.full_name || $user.avatar}
 			/>
-			{$userName}
+			{$userName || $user.username}
 		</div>
 	</div>
 	<form

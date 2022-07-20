@@ -25,7 +25,7 @@ import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 
 	async function handleEnterServer(e) {
 		e.preventDefault();
-		if (!$user || $user?.token == null || $roomCode === '') return;
+		if (!$discordUser || $roomCode === '') return;
 		isLoading.set(true);
 	try {
 		const uid = $discordUser?.user?.id;
@@ -89,12 +89,12 @@ import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 			ACTIVE_PAGE.set(data[0].friendly_name);
 			isLoading.set(false);
 		}
-	} catch (error) {
-		console.log(error);
+	} catch (err) {
+		console.log(err);
 		goto(`/home`);
 		isLoading.set(false);
 		hasError.set(true);
-		error.set(error.message);
+		error.set(err.message);
 	}
 	}
 		

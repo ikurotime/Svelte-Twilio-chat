@@ -16,7 +16,7 @@
 	import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 	async function handleCreateServer(e) {
 		e.preventDefault();
-		if (!$user || $user?.token == null || $roomCode === '') return;
+		if (!$discordUser || $roomCode === '') return;
 	try {
 		isLoading.set(true);
 		const access_token = $discordUser?.user?.access_token;

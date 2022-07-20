@@ -9,7 +9,7 @@
 	async function handleClick() {
 		isLoading.set(true);
 		const token = $discordUser?.user?.access_token;
-		const uid = $discordUser?.user?.id;
+		const uid = $discordUser?.user?.id || $discordUser.user?.user?.id;;
 		if (route) {
 			goto(route, { replaceState: true });
 			ACTIVE_PAGE.set(id);

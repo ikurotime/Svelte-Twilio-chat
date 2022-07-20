@@ -21,10 +21,6 @@
 	onMount(async () => {
 		const uid = $discordUser?.user?.id || $discordUser?.user?.user?.id
 		participants = await $activeConversation.getParticipants()
-		let userData = localStorage.getItem('user');
-		if (userData) {
-			user.set(JSON.parse(userData));
-		}
 		currentServer = [];
 		topics.set([]);
 		if (uid !== undefined) {

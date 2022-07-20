@@ -28,7 +28,7 @@ import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 		if (!$discordUser || $roomCode === '') return;
 		isLoading.set(true);
 	try {
-		const uid = $discordUser?.user?.id;
+		const uid = $discordUser?.user?.id || $discordUser.user?.user?.id;
 		const token = $discordUser?.user?.access_token;
 
 		console.log('usertoken:', token);

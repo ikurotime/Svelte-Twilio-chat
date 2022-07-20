@@ -20,7 +20,7 @@
 	try {
 		isLoading.set(true);
 		const access_token = $discordUser?.user?.access_token;
-		const uid = $discordUser?.user?.id;
+		const uid = $discordUser?.user?.id || $discordUser.user?.user?.id;
 		// We pass the userToken to the server to create a new channel/server in behalf of the user.
 		const res = await createServer({
 			friendlyName: $roomCode,

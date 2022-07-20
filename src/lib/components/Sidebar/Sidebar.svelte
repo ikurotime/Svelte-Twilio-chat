@@ -13,7 +13,6 @@
 			goto('/home');
 		} */
 		servers = $discordUser?.servers || $user?.servers;
-		console.log(servers);
 	});
 	afterUpdate(() => {
 		servers = $discordUser?.servers || $user?.servers;

@@ -27,7 +27,6 @@
 			access_token,
 			uid
 		});
-		//console.log(res);
 		if (res.error) {
 			isLoading.set(false);
 			hasError.set(true);

@@ -7,7 +7,6 @@
 		if (!$userName) {
 			userName.set($session?.user_metadata?.full_name);
 		}
-		console.log($user)
 	});
 </script>
 

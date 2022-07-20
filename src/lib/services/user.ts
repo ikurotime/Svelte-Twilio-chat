@@ -23,10 +23,7 @@ export const JoinConversation = async (
 export const createDefaultChannels = async (
   { twilioAccessToken,serverSid,id } : { twilioAccessToken:string, serverSid:string ,id:string}
   ) => { 
-    //console.log('createDefaultChannels')
   const client = new Client(twilioAccessToken)
-  //console.log(twilioAccessToken)
-  //console.log(client)
   return new Promise(resolve => { 
     client.on('stateChanged',async state =>{
       if(state === 'initialized'){

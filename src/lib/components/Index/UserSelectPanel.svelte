@@ -24,10 +24,8 @@
 			return user;
 		});
 		
-		console.log($user)
+		//($user)
 		const { data, error } = await supabase.from('users').select('id').eq('username', $userName);
-		//console.log(data);
-		//console.log(error);
 		if (data.length === 0) {
 			const { data, error } = await supabase.from('users').insert([
 				{
@@ -35,10 +33,7 @@
 					username: $userName
 				}
 			]);
-			//console.log(data);
-			//console.log(error);
 		}
-		//console.log($user);
 		goto('/home');
 	}
 

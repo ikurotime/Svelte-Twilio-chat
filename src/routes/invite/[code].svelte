@@ -43,8 +43,6 @@ import { ACTIVE_PAGE } from "$lib/stores/homeStore";
       });
       localStorage.setItem('user', JSON.stringify($user));
       const { data, error } = await supabase.from('users').select('id').eq('username', username);
-		//console.log(data);
-		//console.log(error);
 		if (data.length === 0) {
 			const { data, error } = await supabase.from('users').insert([
 				{
@@ -52,8 +50,6 @@ import { ACTIVE_PAGE } from "$lib/stores/homeStore";
 					username: username
 				}
 			]);
-			//console.log(data);
-			//console.log(error);
 		}
 		const token = $discordUser?.access_token || $user?.token;
 		let userIdentity;
@@ -83,7 +79,6 @@ import { ACTIVE_PAGE } from "$lib/stores/homeStore";
 			uid,
 			serverSid: inviteServer.channels[0].server_id
 		});
-    console.log(chatConversation);
 		if (chatConversation) {
 			activeConversation.set(chatConversation);
       isInvited.set(true);

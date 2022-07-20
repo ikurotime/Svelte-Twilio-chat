@@ -10,11 +10,9 @@ import { onDestroy, onMount } from 'svelte';
 	let message = '';
 	
 	const handleTypingStart = (participant) => {
-		console.log(participant.identity,true);
 		infoParticipant = participant;
 	};
 	const handleTypingEnd = (participant) => {
-		console.log(participant.identity,false);
 		infoParticipant = participant;
 	};
 	onMount(() => {

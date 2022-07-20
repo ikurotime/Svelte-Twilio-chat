@@ -10,8 +10,6 @@
 		isLoading.set(true);
 		const token = $discordUser?.access_token || $user?.token;
 		const uid = $discordUser?.id || $user?.id;
-		console.log(token, uid);
-		console.log(serversid)
 		if (route) {
 			goto(route, { replaceState: true });
 			ACTIVE_PAGE.set(id);
@@ -21,7 +19,6 @@
 				token,
 				serverSid: serversid
 			});
-			console.log(accessToken,identity);
 			const chatConversation = await JoinConversation({
 				room: channelsid,
 				twilioAccessToken: accessToken,
@@ -29,13 +26,9 @@
 				uid,
 				serverSid: serversid
 			});
-			//console.log(serversid, $discordId);
 			if (chatConversation) {
 				activeConversation.set(null);
-				//console.log(chatConversation);
 				activeConversation.set(chatConversation);
-
-				//console.log($activeChat);
 				isLoading.set(false);
 			}
 		}

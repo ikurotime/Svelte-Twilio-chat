@@ -23,7 +23,6 @@
 		if (userData) {
 			user.set(JSON.parse(userData));
 		}
-		console.log($discordUser);
 		currentServer = [];
 		topics.set([]);
 		if ($discordUser) {
@@ -31,9 +30,7 @@
 				.filter((server) => server.friendly_name === $page.params.room)
 				.forEach((server) => {
 					currentServer.push(server);
-					//console.log(currentServer);
 					server.channels.forEach((channel) => {
-						//console.log(channel.friendly_name);
 						topics.set([...$topics, channel.friendly_name]);
 					});
 				});
@@ -42,14 +39,11 @@
 				.filter((server) => server.friendly_name === $page.params.room)
 				.forEach((server) => {
 					currentServer.push(server);
-					//console.log(currentServer);
 					server.channels.forEach((channel) => {
-						//console.log(channel.friendly_name);
 						topics.set([...$topics, channel.friendly_name]);
 					});
 				});
 		}
-		console.log(currentServer);
 		currentChatname = currentServer[0]?.channels[0]?.friendly_name ||  $activeConversation.channelState.friendlyName;
 		isLoading.set(false);
 	});

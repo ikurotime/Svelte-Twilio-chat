@@ -32,7 +32,6 @@
 			.from('servers')
 			.select(`id,friendly_name, channels!channels_server_id_fkey(id, server_id,description)`)
 			.eq('friendly_name', $roomCode);
-		//console.log(data)
 
 		if (data?.length === 0) {
 			goto(`/home`);
@@ -65,13 +64,11 @@
 				'friendly_name, id, channels!channels_server_id_fkey(friendly_name,id,description), channel_members!inner(server_id)'
 			)
 			.eq('channel_members.user_id', uid);
-			console.log(resp)
 		user.update((user) => {
         user.servers = resp.data;
         return user;
       });
       localStorage.setItem('user', JSON.stringify($user));
-			console.log($user)
 		const chatConversation = await JoinConversation({
 			room: data[0].channels[0].id,
 			twilioAccessToken: accessToken,

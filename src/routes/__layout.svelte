@@ -13,12 +13,9 @@ import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 	isLoadingScreen.set(true);
 	onMount(async () => {
 		let userData = localStorage.getItem('user');
-		console.log(userData)
 		if (userData) {
 			user.set(JSON.parse(userData));
-			console.log($discordUser)
 		}
-		console.log($user)
 		if (($session?.aud === 'authenticated' || $user.id !== '' ) && ( $page.url.pathname === '/') || $page.url.pathname === '/home' || $page.url.pathname.startsWith('/home/server') && !$isInvited || $page.url.pathname.startsWith('/home/settings'))  {
 			await goto('/home');
 			isLoadingScreen.set(false);
@@ -30,16 +27,12 @@ import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 		}
 		supabase.auth.onAuthStateChange(async (event, sesh) => {
 			if (event === 'SIGNED_IN' && $session === null) {
-				//console.log('onAuthStateChange: ', event, sesh);
 				const { data } = await supabase.from('users').select('*').eq('id', sesh.user.id);
-				//console.log(data);
-				//console.log(data.length);
 				if (data.length === 0) {
 					const res = await supabase.from('users').insert({
 						id: sesh.user.id,
 						username: sesh.user.user_metadata.name
 					});
-					//console.log(res);
 				}
 				fetch('/api/cookie/', {
 					method: 'POST',

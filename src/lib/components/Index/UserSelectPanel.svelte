@@ -7,10 +7,7 @@
 	import { goto } from '$app/navigation';
 	import { signInWith, supabase } from '$lib/supabaseClient';
 	import { v4 as uuidv4 } from 'uuid';
-	/**
-	 *
-	 * @param {{ preventDefault: () => void; }} e
-	 */
+
 	async function handleAnonymousSubmit(e) {
 		e.preventDefault();
 		let uid = uuidv4();

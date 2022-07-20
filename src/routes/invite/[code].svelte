@@ -36,13 +36,20 @@ import Header from "$lib/components/Index/Header.svelte";
       user.update((user) => {
         user.id = uid;
         user.avatar = `https://avatars.dicebear.com/api/open-peeps/${username}.svg`;
-        user.username = username;
+        user.username = `Anonymous_${username}`;
         user.email = 'a@a.com';
-        user.token = `anonymous_${username}`;
+        user.access_token = `anonymous_Anonymous_${username}`;
+        return user;
+      });
+      discordUser.update((user) => {
         user.servers = [inviteServer];
         return user;
       });
-      localStorage.setItem('user', JSON.stringify($user));
+      const userData = $user
+		fetch('/api/cookie/', {
+					method: 'POST',
+					body: JSON.stringify(userData)
+				})
       const { data, error } = await supabase.from('users').select('id').eq('username', username);
 		if (data.length === 0) {
 			const { data, error } = await supabase.from('users').insert([
@@ -52,11 +59,14 @@ import Header from "$lib/components/Index/Header.svelte";
 				}
 			]);
 		}
-		const token = $discordUser?.access_token || $user?.token;
+    console.log($discordUser)
+		const token = $user?.access_token;
+    console.log({token});
+    console.log({uid});
 		let userIdentity;
  
     if (token.startsWith('anonymous')) {
-			userIdentity = token.split('_')[1];
+			userIdentity = token.split('anonymous_')[1];
 		} else {
 			const { data } = await supabase.auth.api.getUser(token);
 			userIdentity = data?.user_metadata.full_name;

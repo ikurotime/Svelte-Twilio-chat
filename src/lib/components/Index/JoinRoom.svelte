@@ -79,7 +79,6 @@ import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 				'friendly_name, id,invite_code,channels!channels_server_id_fkey(friendly_name,id,description), channel_members!inner(server_id)'
 			)
 			.eq('channel_members.user_id', uid);
-			console.log(resp)
 		discordUser.update((user) => {
 				user.servers = resp.data;
 				return user;

@@ -50,7 +50,7 @@
 
 <form
 	on:submit={handleAnonymousSubmit}
-	class="p-5 bg-white rounded h-96 grid place-content-center gap-3 justify-items-center"
+	class="p-5 bg-neutral-700 rounded h-96 grid place-content-center gap-3 justify-items-center text-white"
 >
 	<img
 		src={$user.avatar !== '' ? $user?.avatar : Avatar}
@@ -65,7 +65,7 @@
 			type="text"
 			bind:value={$userName}
 			placeholder={$userName}
-			class="p-3 rounded text-center border"
+			class="p-3 rounded text-center border text-black"
 		/>
 		<StyledButton
 			onClick={randomUserImage}
@@ -79,7 +79,7 @@
 		onClick={() => {}}
 		type="submit"
 		text="CONFIRM"
-		className="text-white bg-[#4F5E5B] shadow-[0_5px_0_#3a4543] p-2 h-10 rounded-xl text-sm"
+		className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm"
 		icon={null}
 	/>
 	<p>- or -</p>

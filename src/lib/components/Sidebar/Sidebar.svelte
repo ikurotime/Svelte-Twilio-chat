@@ -6,7 +6,7 @@
 	import MdSettings from 'svelte-icons/md/MdSettings.svelte';
 	import { discordUser, user } from '$lib/stores/store';
 	import { afterUpdate, onMount } from 'svelte';
-	import { goto } from '$app/navigation';
+
 	let servers = [];
 	onMount(() => {
 		/* if ($discordUser?.length === undefined) {

@@ -10,6 +10,7 @@ import { addParticipant, getTwilioAccessToken } from "$lib/services/chat";
 import { JoinConversation } from "$lib/services/user";
 import { goto } from "$app/navigation";
 import { ACTIVE_PAGE } from "$lib/stores/homeStore";
+import Header from "$lib/components/Index/Header.svelte";
   let participants;
   let inviteCode;
   let inviteServer = null;
@@ -96,10 +97,12 @@ import { ACTIVE_PAGE } from "$lib/stores/homeStore";
 	<title>Invite | Miduscussion</title>
 	<meta name="description" content="El chat de discusion de temas de programacion!" />
 </svelte:head>
+<Header />
+<div class="grid place-content-center h-full">
 {#if $isLoadingScreen}
   <LoadingScreen/>
   {:else if isNewUser}
-  <div class="grid place-content-center w-96 h-72 bg-neutral-600 rounded text-white shadow-lg gap-10 text-center">
+  <div class="grid place-content-center w-full sm:w-96 h-full sm:h-72 p-56 bg-neutral-600 rounded text-white shadow-lg gap-10 text-center">
     <h1>
       How would you like to be known?
     </h1>
@@ -133,3 +136,11 @@ import { ACTIVE_PAGE } from "$lib/stores/homeStore";
   </div>
   
 {/if}
+</div>
+<footer
+	class="grid grid-cols-3 place-content-center text-center p-5 w-full bg-neutral-800 text-white"
+>
+	<p>LinkedIn</p>
+	<p>Made with ❤️ by David Huertas</p>
+	<p>Github</p>
+</footer>

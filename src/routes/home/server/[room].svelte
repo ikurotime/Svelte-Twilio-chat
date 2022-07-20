@@ -17,15 +17,15 @@
 	let currentChatname = '';
 	let participants = [];
 
-	onMount(() => {
-		participants = [...$activeConversation.participants];
+	onMount(async () => {
+		participants = await $activeConversation.getParticipants()
 		let userData = localStorage.getItem('user');
 		if (userData) {
 			user.set(JSON.parse(userData));
 		}
 		currentServer = [];
 		topics.set([]);
-		if ($discordUser) {
+		if ($discordUser?.id !== undefined) {
 			$discordUser.servers
 				.filter((server) => server.friendly_name === $page.params.room)
 				.forEach((server) => {
@@ -34,7 +34,7 @@
 						topics.set([...$topics, channel.friendly_name]);
 					});
 				});
-		}else if($user?.servers){
+		}else if($user?.id !== ''){
 			$user?.servers
 				.filter((server) => server.friendly_name === $page.params.room)
 				.forEach((server) => {
@@ -92,8 +92,8 @@
 		<span class="text-gray-300 text-lg">- Participants -</span>
 		{#each participants as participant}
 		<div class="flex p-3 gap-3 items-center">
-			<img src={ participant[1].identity === $userName ? $session?.user_metadata?.avatar_url : `https://avatars.dicebear.com/api/open-peeps/${participant[1].identity}.svg`} class="w-10 h-10 rounded-full bg-white " alt={$session?.user_metadata?.full_name} />
-			<span class={$colorNames[participant[1].identity.length]}>{participant[1].identity}</span>
+			<img src={ participant?.state?.identity === $userName ? $session?.user_metadata?.avatar_url : `https://avatars.dicebear.com/api/open-peeps/${participant?.state?.identity}.svg`} class="w-10 h-10 rounded-full bg-white " alt={$session?.user_metadata?.full_name} />
+			<span class={$colorNames[participant?.state?.identity?.length]}>{participant?.state?.identity}</span>
 		</div>
 		{/each}
 	</div>

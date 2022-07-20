@@ -1,7 +1,7 @@
 <script>
 import { session } from '$app/stores';
 
-	import { colorNames, userName } from '$lib/stores/store';
+	import { colorNames, discordUser, userName } from '$lib/stores/store';
 
 	export let message, newUser;
 	let userOrigin =
@@ -44,7 +44,7 @@ import { session } from '$app/stores';
 
 <div class={`flex items-center gap-3 p-0.5 w-full  ${userOrigin} rounded px-3 hover:bg-neutral-600 group`}>
 	{#if newUser }
-	<img src={ message.author === $userName ?$session?.user_metadata?.avatar_url : `https://avatars.dicebear.com/api/open-peeps/${message.author}.svg`} class="w-10 h-10 rounded-full bg-white my-2" alt={$session?.user_metadata?.full_name} />
+	<img src={ message.author === $userName ? $discordUser?.user?.avatar : `https://avatars.dicebear.com/api/open-peeps/${message.author}.svg`} class="w-12 h-12 rounded-full bg-white my-2" alt={$session?.user_metadata?.full_name} />
 	{/if}
 	<div>
 		{#if newUser}
@@ -53,7 +53,7 @@ import { session } from '$app/stores';
 	<div class="flex gap-3 items-center">
 		{#if !newUser}
 	
-		<p class="opacity-0 text-white text-[10px] -m-1 group-hover:opacity-100">
+		<p class="opacity-0 text-white text-[10px] group-hover:opacity-100 w-[48px]">
 			{setHour()}
 		</p>
 		

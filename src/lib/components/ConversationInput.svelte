@@ -67,7 +67,7 @@ import { onDestroy, onMount } from 'svelte';
   }
 </style>
 
-<div class="absolute block grow w-full bottom-0 bg-neutral-700 p-3 items-center gap-1">
+<div class="absolute block grow w-full bottom-0 bg-neutral-700 p-3 items-center gap-2">
 
 	<div class="flex">
 		<TextArea 

@@ -4,7 +4,7 @@ type User = {
   avatar: string,
   username: any,
   email: string,
-  token: string,
+  access_token: string,
   servers: object[],
 }
 export const user = writable<User>({
@@ -12,7 +12,7 @@ export const user = writable<User>({
   avatar: '',
   username: '',
   email: '',
-  token: '',
+  access_token: '',
   servers: [],
 })
 export const discordUser = writable({})
@@ -68,3 +68,4 @@ export const activeChat = writable<string>("")
 export const topics = writable<string[]>([])
 export const error = writable<string>("")
 export const hasError = writable<boolean>(false)
+export const serverInviteLink = writable<string>("")

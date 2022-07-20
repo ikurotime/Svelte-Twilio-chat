@@ -12,10 +12,10 @@
 		/* if ($discordUser?.length === undefined) {
 			goto('/home');
 		} */
-		servers = $discordUser?.servers || $user?.servers;
+		servers = $discordUser?.servers;
 	});
 	afterUpdate(() => {
-		servers = $discordUser?.servers || $user?.servers;
+		servers = $discordUser?.servers;
 	});
 </script>
 

@@ -7,10 +7,11 @@
 	import Conversation from '$lib/components/Conversation.svelte';
 
 	import ConversationInput from '$lib/components/ConversationInput.svelte';
-	import { discordUser, activeConversation, topics, userName, colorNames, isLoading, user } from '$lib/stores/store';
+	import { discordUser, activeConversation, topics, userName, colorNames, isLoading, user, serverInviteLink } from '$lib/stores/store';
 	import { onMount } from 'svelte';
 	import { page, session } from '$app/stores';
 	import { draggable } from '@neodrag/svelte'
+
 	let innerWidth = window.innerWidth;
 
 	let currentServer = [];
@@ -18,6 +19,7 @@
 	let participants = [];
 
 	onMount(async () => {
+		const uid = $discordUser?.user?.id || $discordUser?.user?.user?.id
 		participants = await $activeConversation.getParticipants()
 		let userData = localStorage.getItem('user');
 		if (userData) {
@@ -25,7 +27,7 @@
 		}
 		currentServer = [];
 		topics.set([]);
-		if ($discordUser?.id !== undefined) {
+		if (uid !== undefined) {
 			$discordUser.servers
 				.filter((server) => server.friendly_name === $page.params.room)
 				.forEach((server) => {
@@ -34,16 +36,8 @@
 						topics.set([...$topics, channel.friendly_name]);
 					});
 				});
-		}else if($user?.id !== ''){
-			$user?.servers
-				.filter((server) => server.friendly_name === $page.params.room)
-				.forEach((server) => {
-					currentServer.push(server);
-					server.channels.forEach((channel) => {
-						topics.set([...$topics, channel.friendly_name]);
-					});
-				});
 		}
+			serverInviteLink.set($page.url.origin + '/invite/' + currentServer[0].invite_code);
 		currentChatname = currentServer[0]?.channels[0]?.friendly_name ||  $activeConversation.channelState.friendlyName;
 		isLoading.set(false);
 	});
@@ -92,7 +86,7 @@
 		<span class="text-gray-300 text-lg">- Participants -</span>
 		{#each participants as participant}
 		<div class="flex p-3 gap-3 items-center">
-			<img src={ participant?.state?.identity === $userName ? $session?.user_metadata?.avatar_url : `https://avatars.dicebear.com/api/open-peeps/${participant?.state?.identity}.svg`} class="w-10 h-10 rounded-full bg-white " alt={$session?.user_metadata?.full_name} />
+			<img src={ participant?.state?.identity === $userName ? $discordUser?.user?.avatar : `https://avatars.dicebear.com/api/open-peeps/${participant?.state?.identity}.svg`} class="w-10 h-10 rounded-full bg-white " alt={$session?.user_metadata?.full_name} />
 			<span class={$colorNames[participant?.state?.identity?.length]}>{participant?.state?.identity}</span>
 		</div>
 		{/each}

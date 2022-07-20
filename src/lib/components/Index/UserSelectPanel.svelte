@@ -19,14 +19,17 @@
 			user.avatar = `https://avatars.dicebear.com/api/open-peeps/${$userName}.svg`;
 			user.username = $userName;
 			user.email = 'a@a.com';
-			user.token = `anonymous_${$userName}`;
+			user.access_token = `anonymous_${$userName}`;
 
 			return user;
 		});
-		
-		//($user)
+		const userData = $user
+		fetch('/api/cookie/', {
+					method: 'POST',
+					body: JSON.stringify(userData)
+				})
 		const { data, error } = await supabase.from('users').select('id').eq('username', $userName);
-		if (data.length === 0) {
+		if (data?.length === 0) {
 			const { data, error } = await supabase.from('users').insert([
 				{
 					id: uid,

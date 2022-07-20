@@ -17,9 +17,10 @@
 	async function handleCreateServer(e) {
 		e.preventDefault();
 		if (!$user || $user?.token == null || $roomCode === '') return;
+	try {
 		isLoading.set(true);
-		const access_token = $discordUser?.access_token || $user?.token;
-		const uid = $discordUser?.id || $user?.id;
+		const access_token = $discordUser?.user?.access_token;
+		const uid = $discordUser?.user?.id;
 		// We pass the userToken to the server to create a new channel/server in behalf of the user.
 		const res = await createServer({
 			friendlyName: $roomCode,
@@ -50,7 +51,7 @@
 
 		ACTIVE_PAGE.set($roomCode);
 
-		const token = $discordUser?.access_token || $user?.token;
+		const token = $discordUser?.user?.access_token;
 		// Channel is created so we get the Twilio access token for the user that grants access.
 		const { accessToken, identity } = await getTwilioAccessToken({
 			token,
@@ -67,6 +68,12 @@
 			activeConversation.set(chatConversation);
 			isLoading.set(false);
 		}
+	} catch (err) {
+		console.log(err);
+		isLoading.set(false);
+		hasError.set(true);
+		error.set(err.message);
+	}
 	}
 </script>
 

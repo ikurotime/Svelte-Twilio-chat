@@ -26,6 +26,7 @@ import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 			isLoadingScreen.set(false);
 		}
 		supabase.auth.onAuthStateChange(async (event, sesh) => {
+			console.log($user)
 			if (event === 'SIGNED_IN' && $session === null) {
 				const { data } = await supabase.from('users').select('*').eq('id', sesh.user.id);
 				if (data.length === 0) {
@@ -52,6 +53,7 @@ import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 					}
 				});
 			} else if (event === 'SIGNED_OUT') {
+				console.log('signed out')
 				// Clear data from the pages and session store.
 				discordUser.set([]);
 				$session = null;

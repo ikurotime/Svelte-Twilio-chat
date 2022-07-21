@@ -5,7 +5,7 @@
 @layer components {
 	.sidebar-icon {
 		@apply relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto 
-      bg-gray-800 text-green-500 hover:bg-green-600 hover:text-white rounded-3xl hover:rounded-xl transition-all duration-300 cursor-pointer shadow-[0_5px_0_#19212b] active:shadow-none active:translate-y-1 hover:shadow-[0_5px_0_#166534] px-3;
+      bg-gray-300 dark:bg-gray-800 text-green-600 dark:text-green-500 hover:bg-green-600 hover:text-white rounded-3xl hover:rounded-xl transition-all duration-300 cursor-pointer shadow-[0_5px_0_#b0b2b5] dark:shadow-[0_5px_0_#19212b] active:shadow-none active:translate-y-1 hover:shadow-[0_5px_0_#166534] px-3;
 	}
 	.sidebar-icon-active {
 		@apply relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto bg-green-600 text-white rounded-xl transition-all duration-300 cursor-pointer shadow-[0_5px_0_#e3e3e3];
@@ -149,13 +149,13 @@
 	}
 
 	.channel-bar {
-		@apply flex flex-col w-80 min-w-[215px] h-auto m-0 ml-16 bg-gray-200 dark:bg-neutral-800 
+		@apply flex flex-col w-80 min-w-[215px] h-auto m-0 ml-16 bg-gray-500 dark:bg-neutral-800 
      overflow-hidden;
 	}
 
 	.channel-container {
 		@apply flex flex-col items-center justify-start 
-    p-1 m-0;
+    p-2 m-0;
 	}
 	@media (min-width: 640px).sm\:handle {
 	}
@@ -167,7 +167,7 @@
 
 	.channel-block-text {
 		@apply text-lg tracking-wider font-bold 
-    text-gray-600 dark:text-gray-400 
+    text-gray-200 dark:text-gray-400 
     mr-auto ml-4 my-auto align-middle;
 	}
 
@@ -182,16 +182,16 @@
     cursor-pointer;
 	}
 	div.dropdown svg {
-		@apply w-5 h-5 mr-2 ml-auto text-gray-500 text-lg hover:cursor-pointer;
+		@apply w-5 h-5 mr-2 ml-auto text-gray-100 dark:text-gray-500 text-lg hover:cursor-pointer;
 	}
 
 	.dropdown-header-text {
-		@apply text-gray-500  text-opacity-90 
+		@apply text-white dark:text-gray-500  text-opacity-90 
     text-lg font-semibold mr-auto cursor-pointer;
 	}
 
 	.dropdown-header-text-selected {
-		@apply text-green-500 text-opacity-90 text-lg font-bold mr-auto;
+		@apply text-white dark:text-gray-500 text-opacity-90 text-lg font-bold mr-auto;
 	}
 
 	.dropdown-selection {
@@ -205,10 +205,9 @@
 	}
 
 	.dropdown-selection-text {
-		@apply text-gray-500 font-semibold tracking-wide
+		@apply  font-semibold tracking-wide
     mr-auto 
-    transition duration-300 ease-in-out 
-    hover:text-pink-500 dark:hover:text-gray-500
+    transition duration-75 ease-in-out 
     cursor-pointer;
 	}
 
@@ -223,7 +222,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-	@apply bg-gray-500 dark:bg-neutral-400;
+	@apply bg-gray-700 dark:bg-neutral-400;
 }
 
 /**

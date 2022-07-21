@@ -9,24 +9,12 @@
 	import { onMount } from 'svelte';
 	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
 import LoadingScreen from '$lib/components/LoadingScreen.svelte';
+import NotificationMessage from '$lib/components/NotificationMessage.svelte';
 
 	isLoadingScreen.set(true);
 	onMount(async () => {
-		let userData = localStorage.getItem('user');
-		if (userData) {
-			user.set(JSON.parse(userData));
-		}
-		if (($session?.aud === 'authenticated' || $user.id !== '' ) && ( $page.url.pathname === '/') || $page.url.pathname === '/home' || $page.url.pathname.startsWith('/home/server') && !$isInvited || $page.url.pathname.startsWith('/home/settings'))  {
-			await goto('/home');
-			isLoadingScreen.set(false);
-		} else if((!$session?.aud && $user.id === '' ) && !$page.url.pathname.startsWith('/invite')) {
-			await goto('/');
-			isLoadingScreen.set(false);
-		}else if($page.url.pathname.startsWith('/invite')){
-			isLoadingScreen.set(false);
-		}
 		supabase.auth.onAuthStateChange(async (event, sesh) => {
-			console.log($user)
+			console.log(event, sesh);
 			if (event === 'SIGNED_IN' && $session === null) {
 				const { data } = await supabase.from('users').select('*').eq('id', sesh.user.id);
 				if (data.length === 0) {
@@ -57,7 +45,6 @@ import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 				// Clear data from the pages and session store.
 				discordUser.set([]);
 				$session = null;
-				localStorage.removeItem('user');
 				user.set({
 					id: '',
 					avatar: '',
@@ -77,12 +64,30 @@ import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 				});
 			}
 		});
+		console.log($session !== null || $discordUser?.length > 0 || $user.id !== '')
+		console.log($session === null || $discordUser?.length > 0 || $user.id === '')
+		console.log(($session === null || $discordUser?.length > 0 || $user.id === '') && !$page.url.pathname.startsWith('/invite'))
+		
+		if ( ($session === null || $discordUser?.id === '' || $user.id === '')&& ( $page.url.pathname === '/') || $page.url.pathname === '/home' || $page.url.pathname.startsWith('/home/server') && !$isInvited || $page.url.pathname.startsWith('/home/settings'))  {
+			await goto('/');
+			isLoadingScreen.set(false);
+		}
+		if( ($session !== null || $discordUser?.id === '' || $user.id !== '')&& !$page.url.pathname.startsWith('/invite')) {
+			await goto('/home');
+			isLoadingScreen.set(false);
+		}
+		if($page.url.pathname.startsWith('/invite')){
+			isLoadingScreen.set(false);
+		}
+		console.log($session)
+		console.log($discordUser)
+		console.log($user)
 	});
 </script>
 
 <div class="flex flex-col h-screen ">
 	{#if $isLoadingScreen}
-		<LoadingScreen/>
+	 <LoadingScreen bgColor="bg-gray-500"/>
 	{:else}
 		<main
 			class="h-full w-full flex flex-col justify-center items-center bg-picture bg-cover bg-bottom bg-fixed"
@@ -91,4 +96,5 @@ import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 		</main>
 	{/if}
 	<ErrorMessage />
+	<NotificationMessage />
 </div>

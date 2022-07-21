@@ -10,7 +10,7 @@
 	});
 </script>
 
-<div class="bg-neutral-700 h-full w-full flex">
+<div class="bg-gray-500 dark:bg-neutral-800 h-full w-full flex">
 	<Sidebar />
 	<slot />
 </div>

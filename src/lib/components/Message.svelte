@@ -1,7 +1,7 @@
 <script>
 import { session } from '$app/stores';
 
-	import { colorNames, discordUser, userName } from '$lib/stores/store';
+	import { colorNames, discordUser, user, userName } from '$lib/stores/store';
 
 	export let message, newUser;
 	let userOrigin =
@@ -42,23 +42,23 @@ import { session } from '$app/stores';
 	}
 </script>
 
-<div class={`flex items-center gap-3 p-0.5 w-full  ${userOrigin} rounded px-3 hover:bg-neutral-600 group`}>
+<div class={`flex items-center gap-3 p-0.5 w-full  ${userOrigin} rounded px-3 hover:bg-gray-300 dark:hover:bg-neutral-600 group`}>
 	{#if newUser }
-	<img src={ message.author === $userName ? $discordUser?.user?.avatar : `https://avatars.dicebear.com/api/open-peeps/${message.author}.svg`} class="w-12 h-12 rounded-full bg-white my-2" alt={$session?.user_metadata?.full_name} />
+	<img src={ message.author === $userName || $user?.username ? $session?.user_metadata?.avatar_url || $user.avatar : `https://avatars.dicebear.com/api/open-peeps/${message.author}.svg`} class="w-12 h-12 rounded-full bg-white my-2" alt={$session?.user_metadata?.full_name} />
 	{/if}
 	<div>
 		{#if newUser}
-		<small class={`text-sm ${randomColor}`}>{message.author} </small> <small class="text-[10px] text-gray-400">{setDate()}</small>
+		<small class={`text-sm ${randomColor}`}>{message.author} </small> <small class="text-[10px] text-gray-600 dark:text-gray-400">{setDate()}</small>
 	{/if}
 	<div class="flex gap-3 items-center">
 		{#if !newUser}
 	
-		<p class="opacity-0 text-white text-[10px] group-hover:opacity-100 w-[48px]">
+		<p class="opacity-0 text-gray-800 dark:text-white text-[10px] group-hover:opacity-100 w-[48px]">
 			{setHour()}
 		</p>
 		
 		{/if}
-		<p class={`text-sm p-0 text-white ${newUser ? '' : 'ml-0'} whitespace-pre-line`} >
+		<p class={`text-sm p-0 text-gray-800 dark:text-white ${newUser ? '' : 'ml-0'} whitespace-pre-line`} >
 			{message.body}
 		</p>
 	</div>

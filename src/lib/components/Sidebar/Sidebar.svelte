@@ -12,14 +12,14 @@
 		/* if ($discordUser?.length === undefined) {
 			goto('/home');
 		} */
-		servers = $discordUser?.servers;
+		servers = $discordUser?.servers || $user?.servers;
 	});
 	afterUpdate(() => {
-		servers = $discordUser?.servers;
+		servers = $discordUser?.servers || $user?.servers;
 	});
 </script>
 
-<div class="fixed top-0 left-0 h-screen w-16 flex flex-col bg-neutral-900 shadow-lg">
+<div class="fixed top-0 left-0 h-screen w-16 flex flex-col bg-gray-600 dark:bg-neutral-900 shadow-lg">
 	<SideBarIcon id={'home'} icon={MdHome} tooltip="Home" route="/home" />
 	<Divider />
 	{#if servers}

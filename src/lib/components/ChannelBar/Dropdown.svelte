@@ -14,7 +14,6 @@
 			{header}
 		</h5>
 	</div>
-	<MdAdd />
 </div>
 {#if expanded && $topics}
 	{#each $topics as topic}

@@ -7,16 +7,23 @@
 		discordUser,
 		isLoading,
 		hasError,
-		error
+		error,
+userName
 	} from '$lib/stores/store';
 	import { getTwilioAccessToken, createServer } from '$lib/services/chat';
 	import { goto } from '$app/navigation';
 	import { JoinConversation } from '$lib/services/user';
 	import { supabase } from '$lib/supabaseClient';
 	import { ACTIVE_PAGE } from '$lib/stores/homeStore';
+import { session } from '$app/stores';
 	async function handleCreateServer(e) {
 		e.preventDefault();
-		if (!$discordUser || $roomCode === '') return;
+		if ($roomCode === '') return;
+		if($roomCode.length > 15) {
+			hasError.set(true);
+			error.set("Server name is too long. Max 15 characters.");
+			return;
+		}
 	try {
 		isLoading.set(true);
 		const access_token = $discordUser?.user?.access_token;
@@ -60,9 +67,6 @@
 		const chatConversation = await JoinConversation({
 			room: conversation.sid,
 			twilioAccessToken: accessToken,
-			identity,
-			uid,
-			serverSid
 		});
 		if (chatConversation) {
 			activeConversation.set(chatConversation);
@@ -77,13 +81,26 @@
 	}
 </script>
 
+
+<div class="h-full w-full flex flex-col">
+	<div class="grid place-content-end bg-gray-500 dark:bg-neutral-900 w-full">
+		<div class="flex items-center gap-3 dark:text-white mt-auto px-5 py-4 ">
+			<img
+				src={$session?.user_metadata?.avatar_url || $user.avatar  || $discordUser?.user?.avatar || $discordUser?.avatar}
+				class="w-8 h-8 rounded-full bg-white"
+				alt={$session?.user_metadata?.full_name || $user.avatar || $discordUser?.user?.avatar || $discordUser?.avatar}
+			/>
+			{$userName || $user.username || $discordUser?.user?.username || $session?.user_metadata?.full_name}
+		</div>
+	</div>
 <form
 	on:submit={handleCreateServer}
-	class="p-10 bg-neutral-800 rounded h-full w-full grid place-content-center gap-3 justify-items-center "
+	class="p-10 bg-gray-400 dark:bg-neutral-800 rounded h-full w-full grid place-content-center gap-3 justify-items-center "
 >
 	<p class="text-white">CREATE YOUR SERVER</p>
+	<p class="text-white">Choose your perfect name and create your server</p>
 	<div class="flex gap-3">
-		<input type="text" bind:value={$roomCode} class="p-3 rounded text-center" />
+		<input type="text" bind:value={$roomCode} class="p-3 rounded text-center" placeholder="Awesome Server"/>
 		<StyledButton
 			text="CREATE SERVER"
 			onClick={() => {}}
@@ -91,5 +108,8 @@
 			className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm"
 			icon={null}
 		/>
+		
 	</div>
+	<a href="/home" class="text-white hover:text-green-500" on:click={()=>ACTIVE_PAGE.set('home')}>or - Enter a server</a>
 </form>
+</div>

@@ -4,7 +4,7 @@
   import { onMount } from "svelte";
   import { supabase } from "$lib/supabaseClient";
   import StyledButton from "$lib/components/StyledButton.svelte";
-  import { activeConversation, discordUser, isInvited, isLoading, isLoadingScreen, user } from "$lib/stores/store";
+  import { activeConversation, discordUser, isInvited, isLoading, isLoadingScreen, lastAccessToken, user, userName } from "$lib/stores/store";
 	import { v4 as uuidv4 } from 'uuid';
 import { addParticipant, getTwilioAccessToken } from "$lib/services/chat";
 import { JoinConversation } from "$lib/services/user";
@@ -30,21 +30,24 @@ import Header from "$lib/components/Index/Header.svelte";
 
 
   async function handleJoinServer(){
-
-    if($session?.aud === 'authenticated' || username !== ''){
+    console.log({$session})
+    console.log({$discordUser})
+    console.log({$user})
+    if(($session !== null || $discordUser?.id !== '' || $user.id !== '') && username !== ''){
       const uid = $discordUser?.id || uuidv4();
+
       user.update((user) => {
         user.id = uid;
         user.avatar = `https://avatars.dicebear.com/api/open-peeps/${username}.svg`;
         user.username = `Anonymous_${username}`;
         user.email = 'a@a.com';
         user.access_token = `anonymous_Anonymous_${username}`;
-        return user;
-      });
-      discordUser.update((user) => {
         user.servers = [inviteServer];
+
         return user;
       });
+    
+
       const userData = $user
 		fetch('/api/cookie/', {
 					method: 'POST',
@@ -60,7 +63,7 @@ import Header from "$lib/components/Index/Header.svelte";
 			]);
 		}
     console.log($discordUser)
-		const token = $user?.access_token;
+		const token = $discordUser?.access_token || $user?.access_token;
     console.log({token});
     console.log({uid});
 		let userIdentity;
@@ -83,12 +86,10 @@ import Header from "$lib/components/Index/Header.svelte";
 			token,
 			serverSid: inviteServer.channels[0].server_id
 		});
+    lastAccessToken.set(accessToken);
 		const chatConversation = await JoinConversation({
 			room: inviteServer.channels[0].id,
 			twilioAccessToken: accessToken,
-			identity,
-			uid,
-			serverSid: inviteServer.channels[0].server_id
 		});
 		if (chatConversation) {
 			activeConversation.set(chatConversation);
@@ -110,7 +111,7 @@ import Header from "$lib/components/Index/Header.svelte";
 <Header />
 <div class="grid place-content-center h-full">
 {#if $isLoadingScreen}
-  <LoadingScreen/>
+<LoadingScreen bgColor="bg-gray-500" />
   {:else if isNewUser}
   <div class="grid place-content-center w-full sm:w-96 h-full sm:h-72 p-56 bg-neutral-600 rounded text-white shadow-lg gap-10 text-center">
     <h1>

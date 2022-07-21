@@ -1,9 +1,17 @@
 <script>
-import { serverInviteLink } from '$lib/stores/store';
+import { hasNotification, inviteCode, notification, serverInviteLink } from '$lib/stores/store';
 
 	// @ts-nocheck
 	import FaLink from 'svelte-icons/fa/FaLink.svelte'
+import StyledButton from '../StyledButton.svelte';
 	export let text;
+
+	function handleClick() {
+		console.log($serverInviteLink)
+		hasNotification.set(true);
+		notification.set('Invite link copied to clipboard. Invite Code: ' + $inviteCode);
+		navigator.clipboard.writeText($serverInviteLink);
+	}
 </script>
 	<style>
   .icon {
@@ -20,12 +28,13 @@ import { serverInviteLink } from '$lib/stores/store';
 
 <div class="channel-block">
 	<h5 class="channel-block-text">{text}</h5>
-	<button on:click={() => console.log($serverInviteLink)} class="flex flex-row border rounded border-[#636363] items-center text-white mr-auto px-2 py-1 hover:bg-[#636363] gap-2 cursor-pointer">
-		<div class="icon">
-			<FaLink/>
-		</div>
-		<p>Invite</p>
-	</button>
+
+	<StyledButton
+		onClick={handleClick}
+		text="Invite Link"
+		className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm mr-auto"
+		icon={null}
+	/>
 	
 	<!-- <MdSettings /> -->
 </div>

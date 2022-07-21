@@ -17,11 +17,27 @@ export const user = writable<User>({
 })
 export const discordUser = writable({})
 export const userName = writable<string>("")
-export const selectedTab = writable<string>("FIRST_TAB")
-export const FIRST_TAB = "FIRST_TAB";
-export const SECOND_TAB = "SECOND_TAB";
-export const ACTIVE_TAB = 'inline-block p-4 text-blue-400 bg-gray-100 rounded-t-lg'
-export const UNACTIVE_TAB = "inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 ";
+
+export const isLoading = writable<boolean>(true)
+export const isLoadingScreen = writable<boolean>(true)
+export const isChatLoading = writable<boolean>(false)
+
+export const roomCode = writable<string>("")
+export const activeConversation = writable<string>("")
+export const isRandomUser = writable<boolean>(false)
+export const isInvited = writable<boolean>(false)
+
+export const lastAccessToken = writable<string>("")
+export const activeChat = writable<string>("")
+export const selectedChat = writable<string>("")
+export const topics = writable<string[]>([])
+export const error = writable<string>("")
+export const hasError = writable<boolean>(false)
+export const notification = writable<string>("")
+export const hasNotification = writable<boolean>(false)
+export const serverInviteLink = writable<string>("")
+export const currentServerData  = writable<object>({})
+export const inviteCode = writable<string>("")
 
 export const colorNames = writable<string[]>([
   "text-green-500",
@@ -55,17 +71,3 @@ export const colorNames = writable<string[]>([
   "text-teal-500",
   "text-cyan-500",
 ])
-export const isLoading = writable<boolean>(true)
-export const isLoadingScreen = writable<boolean>(true)
-export const isCreatingRoom = writable<boolean>(false)
-export const roomCode = writable<string>("")
-export const activeConversation = writable<string>("")
-export const isRandomUser = writable<boolean>(false)
-export const isInvited = writable<boolean>(false)
-
-export const accessToken = writable<string>("")
-export const activeChat = writable<string>("")
-export const topics = writable<string[]>([])
-export const error = writable<string>("")
-export const hasError = writable<boolean>(false)
-export const serverInviteLink = writable<string>("")

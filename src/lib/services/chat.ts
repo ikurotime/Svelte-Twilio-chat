@@ -79,22 +79,3 @@ export const addParticipant = async ({identity,room,serverSid,uid } : { identity
 
   return res
 }
-export const getConversations = async ({uid,serversid} : { uid:string,serversid:string}) => {
-  var headers = new Headers();
-
-  headers.append('Accept', 'application/json'); // This one is enough for GET requests
-  headers.append('Content-Type', 'application/json'); // This one sends body
-  const res = await fetch(import.meta.env.VITE_BACKEND_URL + '/get-user-conversations', {
-    headers: headers,
-    method: 'POST',
-  body: JSON.stringify({
-    uid,
-    serversid
-  })
-  })
-  if(!res.ok) {
-    throw new Error('Could not get conversation')
-  }
-  const data = await res.json()
-  return data[0]
-}

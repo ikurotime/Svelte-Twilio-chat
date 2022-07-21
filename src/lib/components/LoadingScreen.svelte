@@ -1,4 +1,8 @@
-<div class="w-full h-full grid place-content-center bg-neutral-800 text-green-600">
+<script>
+export let bgColor = 'bg-gray-600 dark:bg-neutral-800';
+
+</script>
+<div class="w-full h-full grid place-content-center {bgColor} text-green-600">
   <div role="status">
     <svg
       aria-hidden="true"

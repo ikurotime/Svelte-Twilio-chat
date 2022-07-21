@@ -5,15 +5,17 @@
 	import TextArea from './TextAreaAutosize.svelte';
 import { onDestroy, onMount } from 'svelte';
 	export let currentChatname;
-	let infoParticipant;
+	let infoParticipant = [];
   let pickedEmoji = "";
 	let message = '';
 	
 	const handleTypingStart = (participant) => {
-		infoParticipant = participant;
+		infoParticipant = [...infoParticipant,participant];
+		console.log(infoParticipant);
 	};
 	const handleTypingEnd = (participant) => {
-		infoParticipant = participant;
+		infoParticipant = infoParticipant.filter(item => item.sid !== participant.sid);
+		console.log(infoParticipant);
 	};
 	onMount(() => {
 		//set up the listener for the typing started Conversation event
@@ -67,12 +69,12 @@ import { onDestroy, onMount } from 'svelte';
   }
 </style>
 
-<div class="absolute block grow w-full bottom-0 bg-neutral-700 p-3 items-center gap-2">
+<div class="absolute block grow w-full bottom-0 bg-gray-700 dark:bg-neutral-700 p-3 items-center gap-2">
 
 	<div class="flex">
 		<TextArea 
   bind:value={message} 
-	classes={"p-2 border-2 border-neutral-700 w-full rounded-xl bg-neutral-600 h-14 text-white"}
+	classes={"p-2 border-2 border-neutral-700 w-full rounded-xl bg-gray-600 dark:bg-neutral-600 h-14 text-white"}
   minRows={1}
 	maxRows={10}
 	{currentChatname}
@@ -83,11 +85,22 @@ import { onDestroy, onMount } from 'svelte';
 		<MdSend/>
 	</button>
 	</div>
-	{#if infoParticipant?.isTyping}
+	{#if infoParticipant.length > 2}
 	<div class="flex gap-1 items-center">
 		<div class="dot-elastic mx-4"></div>
-		<p class="ml-1 text-xs"><strong>{infoParticipant.identity}</strong> is typing...</p>
+		<p class="ml-1 text-xs">Several people are typing...</p>
 	</div>
+	{:else if infoParticipant[0]?.isTyping && infoParticipant[1]?.isTyping}
+	<div class="flex gap-1 items-center">
+		<div class="dot-elastic mx-4"></div>
+		<p class="ml-1 text-xs"><strong>{infoParticipant[0].identity}</strong> and <strong>{infoParticipant[1].identity}</strong> are typing...</p>
+	</div>
+	{:else if infoParticipant[0]?.isTyping}
+	<div class="flex gap-1 items-center">
+		<div class="dot-elastic mx-4"></div>
+		<p class="ml-1 text-xs"><strong>{infoParticipant[0].identity}</strong> is typing...</p>
+	</div>
+	
 		{/if}
 </div>
 

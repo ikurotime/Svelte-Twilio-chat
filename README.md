@@ -12,13 +12,13 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://i.imgur.com/GzzVjXf.png" alt="project-screenshot" width="700" height="400/">
+<img src="https://i.imgur.com/GzzVjXf.png" alt="project-screenshot" width="800" height="400/">
 
-<img src="https://i.imgur.com/mHeXO9l.png" alt="project-screenshot" width="350" height="400/">
+<img src="https://i.imgur.com/mHeXO9l.png" alt="project-screenshot" width="800" height="400/">
 
-<img src="https://i.imgur.com/kb63MDg.png" alt="project-screenshot" width="350" height="400/">
+<img src="https://i.imgur.com/kb63MDg.png" alt="project-screenshot" width="800" height="400/">
 
-<img src="https://i.imgur.com/79uAU9T.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://i.imgur.com/79uAU9T.png" alt="project-screenshot" width="800" height="400/">
 
   
   

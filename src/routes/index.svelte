@@ -1,7 +1,6 @@
 <script>
 	import Header from '$lib/components/Index/Header.svelte';
-import UserSelect from '$lib/components/Index/UserSelect.svelte';
-
+	import UserSelect from '$lib/components/Index/UserSelect.svelte';
 </script>
 
 <svelte:head>
@@ -9,7 +8,7 @@ import UserSelect from '$lib/components/Index/UserSelect.svelte';
 	<meta name="description" content="El chat de discusion de temas de programacion!" />
 </svelte:head>
 
-<Header/>
+<Header />
 <div class="grid grid-cols-1 place-items-center h-full">
 	<UserSelect />
 </div>

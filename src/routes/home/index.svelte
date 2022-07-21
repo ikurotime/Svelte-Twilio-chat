@@ -2,8 +2,8 @@
 	import JoinRoom from '$lib/components/Index/JoinRoom.svelte';
 	export let userData;
 	import { discordUser, isLoading } from '$lib/stores/store';
-import { onMount } from 'svelte';
-	
+	import { onMount } from 'svelte';
+
 	discordUser.set(userData);
 	onMount(() => {
 		isLoading.set(false);
@@ -14,6 +14,5 @@ import { onMount } from 'svelte';
 	<title>Home | TechTalks</title>
 	<meta name="description" content="El chat de discusion de temas de programacion!" />
 </svelte:head>
-
 
 <JoinRoom />

@@ -1,7 +1,14 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { getTwilioAccessToken } from '$lib/services/chat';
-	import { activeConversation, activeChat, discordUser, isLoading, user, lastAccessToken } from '$lib/stores/store';
+	import {
+		activeConversation,
+		activeChat,
+		discordUser,
+		isLoading,
+		user,
+		lastAccessToken
+	} from '$lib/stores/store';
 	import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 	import { JoinConversation } from '$lib/services/user';
 	export let icon, tooltip, route, id, serversid, channelsid;
@@ -9,7 +16,7 @@
 	async function handleClick() {
 		isLoading.set(true);
 		const token = $discordUser?.user?.access_token;
-		const uid = $discordUser?.user?.id || $discordUser?.user?.user?.id;;
+		const uid = $discordUser?.user?.id || $discordUser?.user?.user?.id;
 		if (route) {
 			goto(route, { replaceState: true });
 			ACTIVE_PAGE.set(id);

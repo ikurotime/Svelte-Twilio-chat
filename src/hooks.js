@@ -11,11 +11,11 @@ export const handle = async ({ event, resolve }) => {
 		.select(
 			'friendly_name, id,invite_code, channels!channels_server_id_fkey(friendly_name,id,description), channel_members!inner(server_id)'
 		)
-		.eq('channel_members.user_id', (session?.id || session?.user?.id) );
+		.eq('channel_members.user_id', session?.id || session?.user?.id);
 	// If the session is in the cookie, asign it to the SvelteKit's store in order to work with getStore()
 	event.locals.user = session
 		? {
-				user:session,
+				user: session,
 				servers: data
 		  }
 		: null;

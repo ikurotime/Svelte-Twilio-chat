@@ -1,2 +1,1 @@
-
-<content name="content"/>
+<content name="content" />

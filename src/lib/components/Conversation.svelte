@@ -13,7 +13,6 @@
 		const paginator = await $activeConversation.getMessages();
 		messages = paginator.items;
 		$activeConversation.on('messageAdded', handleMessage);
-	
 	});
 
 	onDestroy(async () => {
@@ -25,12 +24,15 @@
 	});
 </script>
 
-<div bind:this={div} class="absolute bottom-8 bg-gray-400 dark:bg-[#363535] w-full flex flex-col h-fit max-h-[85vh] mt-auto overflow-y-scroll scroll p-2 mb-10">
-	{#each messages as message,i}
-		{#if messages[(i-1)] && messages[(i - 1)].author === message.author}
-		<Message {message} />
+<div
+	bind:this={div}
+	class="absolute bottom-8 bg-gray-400 dark:bg-[#363535] w-full flex flex-col h-fit max-h-[85vh] mt-auto overflow-y-scroll scroll p-2 mb-10"
+>
+	{#each messages as message, i}
+		{#if messages[i - 1] && messages[i - 1].author === message.author}
+			<Message {message} />
 		{:else}
-		<Message {message} newUser />
+			<Message {message} newUser />
 		{/if}
 	{/each}
 </div>

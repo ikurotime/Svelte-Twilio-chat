@@ -3,5 +3,5 @@
 </script>
 
 <div class="max-w-lg w-full">
-		<UserSelectPanel />
+	<UserSelectPanel />
 </div>

@@ -1,1 +1,1 @@
-<hr class="sidebar-hr">
+<hr class="sidebar-hr" />

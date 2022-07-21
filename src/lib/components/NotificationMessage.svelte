@@ -4,7 +4,6 @@
 	const hideError = () => {
 		hasNotification.set(false);
 	};
-
 </script>
 
 <div
@@ -21,7 +20,6 @@
 		class="bg-green-600 flex justify-between items-center py-2 px-3 bg-clip-padding border-b border-green-500 rounded-lg"
 	>
 		<p class="font-bold text-white flex items-center">
-			
 			{$notification}
 		</p>
 		<div class="flex items-center">
@@ -30,8 +28,8 @@
 				type="button"
 				class="btn-close btn-close-white box-content w-4 h-4 ml-2 text-white border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-white hover:opacity-75 hover:no-underline"
 				data-mdb-dismiss="toast"
-				aria-label="Close"
-			>X</button>
+				aria-label="Close">X</button
+			>
 		</div>
 	</div>
 </div>

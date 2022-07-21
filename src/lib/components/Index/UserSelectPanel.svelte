@@ -20,11 +20,11 @@
 
 			return user;
 		});
-		const userData = $user
+		const userData = $user;
 		fetch('/api/cookie/', {
-					method: 'POST',
-					body: JSON.stringify(userData)
-				})
+			method: 'POST',
+			body: JSON.stringify(userData)
+		});
 		const { data, error } = await supabase.from('users').select('id').eq('username', $userName);
 		if (data?.length === 0) {
 			const { data, error } = await supabase.from('users').insert([

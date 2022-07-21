@@ -1,12 +1,9 @@
 <script>
-import { goto } from '$app/navigation';
-import { deleteServer } from '$lib/services/chat';
-
-import { currentServerData, inviteCode, serverInviteLink} from '$lib/stores/store';
-import StyledButton from '../StyledButton.svelte';
+	import { hasNotification, inviteCode, notification, serverInviteLink } from '$lib/stores/store';
+	import StyledButton from '../StyledButton.svelte';
 	export let text;
 
-/* 	function handleClick() {
+	/* 	function handleClick() {
 		deleteServer({
 			serverSid: $currentServerData.id,
 		});
@@ -23,10 +20,10 @@ import StyledButton from '../StyledButton.svelte';
 	<h5 class="channel-block-text">{text}</h5>
 
 	<StyledButton
-	onClick={handleClick}
-	text="Invite Link"
-	className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm mr-auto "
-	icon={null}
+		onClick={handleClick}
+		text="Invite Link"
+		className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm mr-auto "
+		icon={null}
 	/>
 	<!-- In order to work, it's needed to implant a recognition of the user that created the server.
 		 I have no time to do it, so im going to leave it as a TODO. 
@@ -36,5 +33,4 @@ import StyledButton from '../StyledButton.svelte';
 		className="text-slate-800 bg-red-300 shadow-[0_5px_0_#e67575] p-2 rounded-xl text-sm mr-auto"
 		icon={null}
 	/> -->
-	
 </div>

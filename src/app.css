@@ -157,7 +157,7 @@
 		@apply flex flex-col items-center justify-start 
     p-2 m-0;
 	}
-	@media (min-width: 640px).sm\:handle {
+	@media (min-width: 640px) .sm\:handle {
 	}
 	.channel-block {
 		@apply flex items-center justify-center 
@@ -205,13 +205,11 @@
 	}
 
 	.dropdown-selection-text {
-		@apply  font-semibold tracking-wide
+		@apply font-semibold tracking-wide
     mr-auto 
     transition duration-75 ease-in-out 
     cursor-pointer;
 	}
-
-
 }
 
 @tailwind utilities;
@@ -230,93 +228,94 @@
  * Dot Elastic
  * ==============================================
  */
- .dot-elastic {
-  position: relative;
-  width: 6px;
-  height: 6px;
-  border-radius: 5px;
-  background-color: #D3D3D3;
-  color: #D3D3D3;
-  animation: dotElastic 1s infinite linear;
+.dot-elastic {
+	position: relative;
+	width: 6px;
+	height: 6px;
+	border-radius: 5px;
+	background-color: #d3d3d3;
+	color: #d3d3d3;
+	animation: dotElastic 1s infinite linear;
 }
 
-.dot-elastic::before, .dot-elastic::after {
-  content: '';
-  display: inline-block;
-  position: absolute;
-  top: 0;
+.dot-elastic::before,
+.dot-elastic::after {
+	content: '';
+	display: inline-block;
+	position: absolute;
+	top: 0;
 }
 
 .dot-elastic::before {
-  left: -15px;
-  width: 6px;
-  height: 6px;
-  border-radius: 5px;
-  background-color: #D3D3D3;
-  color: #D3D3D3;
-  animation: dotElasticBefore 1s infinite linear;
+	left: -15px;
+	width: 6px;
+	height: 6px;
+	border-radius: 5px;
+	background-color: #d3d3d3;
+	color: #d3d3d3;
+	animation: dotElasticBefore 1s infinite linear;
 }
 
 .dot-elastic::after {
-  left: 15px;
-  width: 6px;
-  height: 6px;
-  border-radius: 5px;
-  background-color: #D3D3D3;
-  color: #D3D3D3;
-  animation: dotElasticAfter 1s infinite linear;
+	left: 15px;
+	width: 6px;
+	height: 6px;
+	border-radius: 5px;
+	background-color: #d3d3d3;
+	color: #d3d3d3;
+	animation: dotElasticAfter 1s infinite linear;
 }
 
 @keyframes dotElasticBefore {
-  0% {
-    transform: scale(1, 1);
-  }
-  25% {
-    transform: scale(1, 1.5);
-  }
-  50% {
-    transform: scale(1, 0.67);
-  }
-  75% {
-    transform: scale(1, 1);
-  }
-  100% {
-    transform: scale(1, 1);
-  }
+	0% {
+		transform: scale(1, 1);
+	}
+	25% {
+		transform: scale(1, 1.5);
+	}
+	50% {
+		transform: scale(1, 0.67);
+	}
+	75% {
+		transform: scale(1, 1);
+	}
+	100% {
+		transform: scale(1, 1);
+	}
 }
 
 @keyframes dotElastic {
-  0% {
-    transform: scale(1, 1);
-  }
-  25% {
-    transform: scale(1, 1);
-  }
-  50% {
-    transform: scale(1, 1.5);
-  }
-  75% {
-    transform: scale(1, 1);
-  }
-  100% {
-    transform: scale(1, 1);
-  }
+	0% {
+		transform: scale(1, 1);
+	}
+	25% {
+		transform: scale(1, 1);
+	}
+	50% {
+		transform: scale(1, 1.5);
+	}
+	75% {
+		transform: scale(1, 1);
+	}
+	100% {
+		transform: scale(1, 1);
+	}
 }
 
 @keyframes dotElasticAfter {
-  0% {
-    transform: scale(1, 1);
-  }
-  25% {
-    transform: scale(1, 1);
-  }
-  50% {
-    transform: scale(1, 0.67);
-  }
-  75% {
-    transform: scale(1, 1.5);
-  }
-  100% {
-    transform: scale(1, 1);
-  }
+	0% {
+		transform: scale(1, 1);
+	}
+	25% {
+		transform: scale(1, 1);
+	}
+	50% {
+		transform: scale(1, 0.67);
+	}
+	75% {
+		transform: scale(1, 1.5);
+	}
+	100% {
+		transform: scale(1, 1);
+	}
 }

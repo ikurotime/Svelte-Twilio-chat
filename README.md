@@ -20,19 +20,16 @@
 
 <img src="https://i.imgur.com/79uAU9T.png" alt="project-screenshot" width="800" height="400/">
 
-  
-  
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
 
-*   Create or join servers and chat in multiple channels
-*   Share your created server with an invite link
-*   Join to the servers via invite link or invite code
-*   Join servers logged with your Discord account or be completely anonymous
-*   Light / Dark Mode
-*   "User is typing..." text
-
+- Create or join servers and chat in multiple channels
+- Share your created server with an invite link
+- Join to the servers via invite link or invite code
+- Join servers logged with your Discord account or be completely anonymous
+- Light / Dark Mode
+- "User is typing..." text
 
 <h2>🛠️ Installation Steps:</h2>
 
@@ -75,8 +72,8 @@ VITE_BACKEND_URL=
 Disclaimer,this is a learning project example of a chat app usign Twilio services and Supabase as BaaS. The code may contain bugs and it requires optimization.
 To contribute create a new branch from 'main' make your changes and make a Pull Request.
 
-  
-  
+
+
 <h2>💻 Built with</h2>
 
 Technologies used in the project:
@@ -93,3 +90,4 @@ This project is licensed under the MIT
 <h2>💖Like my work?</h2>
 
 If you like this project consider following me on social media. I share my knowledge and projects 🔥🚀<p>https://twitter.com/ikurotime</p>
+```

@@ -8,8 +8,8 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
-import LoadingScreen from '$lib/components/LoadingScreen.svelte';
-import NotificationMessage from '$lib/components/NotificationMessage.svelte';
+	import LoadingScreen from '$lib/components/LoadingScreen.svelte';
+	import NotificationMessage from '$lib/components/NotificationMessage.svelte';
 
 	isLoadingScreen.set(true);
 	onMount(async () => {
@@ -63,24 +63,31 @@ import NotificationMessage from '$lib/components/NotificationMessage.svelte';
 			}
 		});
 
-		if ( ($session === null || $discordUser?.id === '' || $user.id === '')&& ( $page.url.pathname === '/') || $page.url.pathname === '/home' || $page.url.pathname.startsWith('/home/server') && !$isInvited || $page.url.pathname.startsWith('/home/settings'))  {
+		if (
+			(($session === null || $discordUser?.id === '' || $user.id === '') &&
+				$page.url.pathname === '/') ||
+			$page.url.pathname === '/home' ||
+			($page.url.pathname.startsWith('/home/server') && !$isInvited) ||
+			$page.url.pathname.startsWith('/home/settings')
+		) {
 			await goto('/');
 		}
-		if( ($session !== null || $discordUser?.id === '' || $user.id !== '')&& !$page.url.pathname.startsWith('/invite')) {
+		if (
+			($session !== null || $discordUser?.id === '' || $user.id !== '') &&
+			!$page.url.pathname.startsWith('/invite')
+		) {
 			await goto('/home');
-
 		}
-		if($page.url.pathname.startsWith('/invite')){
+		if ($page.url.pathname.startsWith('/invite')) {
 			isLoadingScreen.set(false);
 		}
 		isLoadingScreen.set(false);
-
 	});
 </script>
 
 <div class="flex flex-col h-screen ">
 	{#if $isLoadingScreen}
-	 <LoadingScreen bgColor="bg-gray-500 dark:bg-neutral-800"/>
+		<LoadingScreen bgColor="bg-gray-500 dark:bg-neutral-800" />
 	{:else}
 		<main
 			class="h-full w-full flex flex-col justify-center items-center bg-picture bg-cover bg-bottom bg-fixed"

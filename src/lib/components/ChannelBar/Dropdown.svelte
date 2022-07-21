@@ -9,7 +9,7 @@
 
 <div class="dropdown">
 	<div class="dropdown-header">
-		<ChevronIcon {expanded}/>
+		<ChevronIcon {expanded} />
 		<h5 class={expanded ? 'dropdown-header-text-selected' : 'dropdown-header-text'}>
 			{header}
 		</h5>

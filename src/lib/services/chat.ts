@@ -79,3 +79,21 @@ export const addParticipant = async ({identity,room,serverSid,uid } : { identity
 
   return res
 }
+
+export const deleteServer = async ({serverSid } : { serverSid:string}) => {
+  var headers = new Headers();
+  headers.append('Accept', 'application/json'); // This one is enough for GET requests
+  headers.append('Content-Type', 'application/json'); // This one sends body
+  const res = await fetch(import.meta.env.VITE_BACKEND_URL + '/delete-server', {
+    headers: headers,
+    method: 'POST',
+  body: JSON.stringify({
+    serverSid
+  })
+  })
+  if(!res.ok) {
+    throw new Error('Could not delete server')
+  }
+
+  return res
+}

@@ -9,7 +9,8 @@
 		hasError,
 		error,
 userName,
-lastAccessToken
+lastAccessToken,
+serverInviteLink
 	} from '$lib/stores/store';
 	import { getTwilioAccessToken, createServer } from '$lib/services/chat';
 	import { goto } from '$app/navigation';
@@ -47,7 +48,7 @@ import { session } from '$app/stores';
 		const { data } = await supabase
 			.from('servers')
 			.select(
-				'friendly_name, id, channels!channels_server_id_fkey(friendly_name,id,description), channel_members!inner(server_id)'
+				'friendly_name, id, invite_code, channels!channels_server_id_fkey(friendly_name,id,description), channel_members!inner(server_id)'
 			)
 			.eq('channel_members.user_id', uid);
 		if ($discordUser !== undefined) {
@@ -56,7 +57,7 @@ import { session } from '$app/stores';
 				return user;
 			});
 		}
-
+		serverInviteLink.set(data[0].invite_code);
 		ACTIVE_PAGE.set($roomCode);
 
 		const token = $discordUser?.user?.access_token;

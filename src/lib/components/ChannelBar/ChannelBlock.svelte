@@ -1,29 +1,18 @@
 <script>
-import { hasNotification, inviteCode, notification, serverInviteLink } from '$lib/stores/store';
+import { goto } from '$app/navigation';
+import { deleteServer } from '$lib/services/chat';
 
-	// @ts-nocheck
-	import FaLink from 'svelte-icons/fa/FaLink.svelte'
+import { currentServerData} from '$lib/stores/store';
 import StyledButton from '../StyledButton.svelte';
 	export let text;
 
 	function handleClick() {
-		hasNotification.set(true);
-		notification.set('Invite link copied to clipboard. Invite Code: ' + $inviteCode);
-		navigator.clipboard.writeText($serverInviteLink);
+		deleteServer({
+			serverSid: $currentServerData.id,
+		});
+		goto('/home')
 	}
 </script>
-	<style>
-  .icon {
-    width: 15px;
-    height: 15px;
-    border-radius: 8px;
-		color: aliceblue;
-    transition: all 0.2s ease-in-out;
-  }
-  .icon:hover {
-    background-color: #636363;
-  }
-</style>
 
 <div class="channel-block">
 	<h5 class="channel-block-text">{text}</h5>

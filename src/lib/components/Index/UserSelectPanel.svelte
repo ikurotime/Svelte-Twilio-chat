@@ -40,9 +40,8 @@
 	function randomUserImage() {
 		isRandomUser.set(true);
 		userName.set('Anonymous_' + Math.random().toString(36).substr(2, 5));
-		const random = Math.floor(Math.random() * 100);
 		user.update((user) => {
-			user.avatar = `https://avatars.dicebear.com/api/open-peeps/${random}.svg`;
+			user.avatar = `https://avatars.dicebear.com/api/open-peeps/${$userName}.svg`;
 			return user;
 		});
 	}

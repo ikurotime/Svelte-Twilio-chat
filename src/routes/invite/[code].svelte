@@ -107,7 +107,7 @@ import Header from "$lib/components/Index/Header.svelte";
 <Header />
 <div class="grid place-content-center h-full">
 {#if $isLoadingScreen}
-<LoadingScreen bgColor="bg-gray-500" />
+<LoadingScreen bgColor="bg-gray-500 dark:bg-neutral-800" />
   {:else if isNewUser}
   <div class="grid place-content-center w-full sm:w-96 h-full sm:h-72 p-56 bg-neutral-600 rounded text-white shadow-lg gap-10 text-center">
     <h1>

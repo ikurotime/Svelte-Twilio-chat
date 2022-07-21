@@ -44,7 +44,7 @@ import { session } from '$app/stores';
 
 <div class={`flex items-center gap-3 p-0.5 w-full  ${userOrigin} rounded px-3 hover:bg-gray-300 dark:hover:bg-neutral-600 group`}>
 	{#if newUser }
-	<img src={ message.author === $userName || $user?.username ? $session?.user_metadata?.avatar_url || $user.avatar : `https://avatars.dicebear.com/api/open-peeps/${message.author}.svg`} class="w-12 h-12 rounded-full bg-white my-2" alt={$session?.user_metadata?.full_name} />
+	<img src={ message.author === $userName ||message.author ===  $user?.username ? $session?.user_metadata?.avatar_url || $user.avatar : `https://avatars.dicebear.com/api/open-peeps/${message.author}.svg`} class="w-12 h-12 rounded-full bg-white my-2" alt={$session?.user_metadata?.full_name} />
 	{/if}
 	<div>
 		{#if newUser}

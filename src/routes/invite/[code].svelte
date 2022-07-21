@@ -42,6 +42,7 @@
 
 	async function handleJoinServer() {
 		if (($session !== null || $discordUser?.id !== '' || $user.id !== '') && username !== '') {
+      isLoading.set(true);
 			const uid = $discordUser?.id || uuidv4();
 
 			user.update((user) => {

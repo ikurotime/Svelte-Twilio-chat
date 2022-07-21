@@ -7,7 +7,6 @@ import StyledButton from '../StyledButton.svelte';
 	export let text;
 
 	function handleClick() {
-		console.log($serverInviteLink)
 		hasNotification.set(true);
 		notification.set('Invite link copied to clipboard. Invite Code: ' + $inviteCode);
 		navigator.clipboard.writeText($serverInviteLink);
@@ -31,10 +30,9 @@ import StyledButton from '../StyledButton.svelte';
 
 	<StyledButton
 		onClick={handleClick}
-		text="Invite Link"
-		className="text-slate-800 bg-green-300 shadow-[0_5px_0_#4ade80] p-2 rounded-xl text-sm mr-auto"
+		text="Delete"
+		className="text-slate-800 bg-red-300 shadow-[0_5px_0_#e67575] p-2 rounded-xl text-sm mr-auto"
 		icon={null}
 	/>
 	
-	<!-- <MdSettings /> -->
 </div>

@@ -18,8 +18,8 @@ export const user = writable<User>({
 export const discordUser = writable({})
 export const userName = writable<string>("")
 
-export const isLoading = writable<boolean>(true)
-export const isLoadingScreen = writable<boolean>(true)
+export const isLoading = writable<boolean>(false)
+export const isLoadingScreen = writable<boolean>(false)
 export const isChatLoading = writable<boolean>(false)
 
 export const roomCode = writable<string>("")

@@ -32,8 +32,6 @@ import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 		const uid = $discordUser?.user?.id || $discordUser?.user?.user?.id || $user?.id;
 		const token = $discordUser?.user?.access_token || $user?.access_token;
 
-		console.log('usertoken:', token);
-		console.log('useruid:', uid);
 		let userIdentity;
 		const { data } = await supabase
 			.from('servers')
@@ -48,7 +46,6 @@ import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 			return;
 		}
 		goto(`/home/server/${data[0].friendly_name}`);
-		console.log($discordUser)
 
 		if (token.startsWith('anonymous')) {
 			userIdentity = token.split('anonymous_')[1];
@@ -78,9 +75,7 @@ import { ACTIVE_PAGE } from '$lib/stores/homeStore';
 				'friendly_name, id,invite_code,channels!channels_server_id_fkey(friendly_name,id,description), channel_members!inner(server_id)'
 			)
 			.eq('channel_members.user_id', uid);
-			console.log(resp)
 		discordUser.update((user) => {
-			console.log(user)
 				user.servers = resp?.data;
 				return user;
 			});

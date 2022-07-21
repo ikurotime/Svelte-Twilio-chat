@@ -14,7 +14,6 @@ import NotificationMessage from '$lib/components/NotificationMessage.svelte';
 	isLoadingScreen.set(true);
 	onMount(async () => {
 		supabase.auth.onAuthStateChange(async (event, sesh) => {
-			console.log(event, sesh);
 			if (event === 'SIGNED_IN' && $session === null) {
 				const { data } = await supabase.from('users').select('*').eq('id', sesh.user.id);
 				if (data.length === 0) {
@@ -41,7 +40,6 @@ import NotificationMessage from '$lib/components/NotificationMessage.svelte';
 					}
 				});
 			} else if (event === 'SIGNED_OUT') {
-				console.log('signed out')
 				// Clear data from the pages and session store.
 				discordUser.set([]);
 				$session = null;
@@ -64,10 +62,7 @@ import NotificationMessage from '$lib/components/NotificationMessage.svelte';
 				});
 			}
 		});
-		console.log($session !== null || $discordUser?.length > 0 || $user.id !== '')
-		console.log($session === null || $discordUser?.length > 0 || $user.id === '')
-		console.log(($session === null || $discordUser?.length > 0 || $user.id === '') && !$page.url.pathname.startsWith('/invite'))
-		
+
 		if ( ($session === null || $discordUser?.id === '' || $user.id === '')&& ( $page.url.pathname === '/') || $page.url.pathname === '/home' || $page.url.pathname.startsWith('/home/server') && !$isInvited || $page.url.pathname.startsWith('/home/settings'))  {
 			await goto('/');
 			isLoadingScreen.set(false);
@@ -79,9 +74,6 @@ import NotificationMessage from '$lib/components/NotificationMessage.svelte';
 		if($page.url.pathname.startsWith('/invite')){
 			isLoadingScreen.set(false);
 		}
-		console.log($session)
-		console.log($discordUser)
-		console.log($user)
 	});
 </script>
 

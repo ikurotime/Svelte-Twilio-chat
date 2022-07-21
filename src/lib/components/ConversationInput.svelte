@@ -11,11 +11,9 @@ import { onDestroy, onMount } from 'svelte';
 	
 	const handleTypingStart = (participant) => {
 		infoParticipant = [...infoParticipant,participant];
-		console.log(infoParticipant);
 	};
 	const handleTypingEnd = (participant) => {
 		infoParticipant = infoParticipant.filter(item => item.sid !== participant.sid);
-		console.log(infoParticipant);
 	};
 	onMount(() => {
 		//set up the listener for the typing started Conversation event

@@ -8,7 +8,8 @@
 		isLoading,
 		hasError,
 		error,
-userName
+userName,
+lastAccessToken
 	} from '$lib/stores/store';
 	import { getTwilioAccessToken, createServer } from '$lib/services/chat';
 	import { goto } from '$app/navigation';
@@ -64,6 +65,7 @@ import { session } from '$app/stores';
 			token,
 			serverSid
 		});
+		lastAccessToken.set(accessToken);
 		const chatConversation = await JoinConversation({
 			room: conversation.sid,
 			twilioAccessToken: accessToken,

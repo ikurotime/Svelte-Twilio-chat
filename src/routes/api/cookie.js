@@ -1,7 +1,6 @@
 // @ts-nocheck
 export const post = async ({ request }) => {
   const session = request.body ? await request.json() : null;
-  console.log('post', session);
   if (session == null) {
     return { status: 400,body: 'Expecting JSON body, but body was null.' }
   }

@@ -30,9 +30,6 @@ import Header from "$lib/components/Index/Header.svelte";
 
 
   async function handleJoinServer(){
-    console.log({$session})
-    console.log({$discordUser})
-    console.log({$user})
     if(($session !== null || $discordUser?.id !== '' || $user.id !== '') && username !== ''){
       const uid = $discordUser?.id || uuidv4();
 
@@ -62,10 +59,9 @@ import Header from "$lib/components/Index/Header.svelte";
 				}
 			]);
 		}
-    console.log($discordUser)
+
 		const token = $discordUser?.access_token || $user?.access_token;
-    console.log({token});
-    console.log({uid});
+
 		let userIdentity;
  
     if (token.startsWith('anonymous')) {

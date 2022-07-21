@@ -1,9 +1,13 @@
 <script>
 	import JoinRoom from '$lib/components/Index/JoinRoom.svelte';
 	export let userData;
-	import { discordUser } from '$lib/stores/store';
+	import { discordUser, isLoading } from '$lib/stores/store';
+import { onMount } from 'svelte';
 	
 	discordUser.set(userData);
+	onMount(() => {
+		isLoading.set(false);
+	});
 </script>
 
 <svelte:head>

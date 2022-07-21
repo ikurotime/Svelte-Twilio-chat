@@ -24,14 +24,13 @@ import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 		participants = await $activeConversation.getParticipants()
 		currentServer = [];
 		topics.set([]);
-		console.log($discordUser)
 		if (uid !== undefined) {
 			$discordUser.servers
 				.filter((server) => server.friendly_name === $page.params.room)
 				.forEach((server) => {
 					currentServer.push(server);
 					server.channels.forEach((channel) => {
-						topics.set([...$topics, {friendlyName: channel.friendly_name, id: channel.id}]);
+						topics.set([...$topics, {friendlyName: channel.friendly_name, id: channel.id, description: channel.description}]);
 					});
 				});
 		}else{
@@ -40,13 +39,13 @@ import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 				.forEach((server) => {
 					currentServer.push(server);
 					server.channels.forEach((channel) => {
-						topics.set([...$topics, {friendlyName: channel.friendly_name, id: channel.id}]);
+						topics.set([...$topics, {friendlyName: channel.friendly_name, id: channel.id, description: channel.description}]);
 					});
 				});
 		}
 			serverInviteLink.set($page.url.origin + '/invite/' + currentServer[0]?.invite_code);
 		currentChatname = currentServer[0]?.channels[0]?.friendly_name ||  $activeConversation.channelState.friendlyName;
-		selectedChat.set(currentChatname);
+		selectedChat.set({friendlyName: currentChatname, id: currentServer[0]?.channels[0]?.id , description: currentServer[0]?.channels[0]?.description});
 		inviteCode.set(currentServer[0]?.invite_code);
 		isLoading.set(false);
 	});
@@ -67,7 +66,7 @@ import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 	{#if currentServer}
 	<div class="border-b border-neutral-600 p-3">
 		<h1 class="text-gray-300 dark:text-white">
-			# {currentChatname} &nbsp;|&nbsp; {currentServer[0]?.channels[0]?.description}
+			# {$selectedChat?.friendlyName} &nbsp;|&nbsp; {$selectedChat?.description}
 		</h1>
 	</div>
 		{/if}

@@ -31,6 +31,8 @@ Here're some of the project's best features:
 *   Join to the servers via invite link or invite code
 *   Join servers logged with your Discord account or be completely anonymous
 *   Light / Dark Mode
+*   "User is typing..." text
+
 
 <h2>🛠️ Installation Steps:</h2>
 
@@ -58,7 +60,8 @@ https://supabase.com/docs/guides/local-development
 
 <h2>🍰 Contribution Guidelines:</h2>
 
-This is a learning project example of a chat app usign Twilio services and Supabase as BaaS. The code may contain errors or require optimization. To contribute create a new branch from 'main' make your changes and make a Pull Request.
+Disclaimer,this is a learning project example of a chat app usign Twilio services and Supabase as BaaS. The code may contain bugs and it requires optimization.
+To contribute create a new branch from 'main' make your changes and make a Pull Request.
 
   
   

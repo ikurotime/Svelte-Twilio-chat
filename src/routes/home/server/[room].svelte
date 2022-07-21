@@ -52,7 +52,7 @@ import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 </script>
 
 <svelte:head>
-	<title>{currentServer[0]?.channels[0]?.friendly_name} | Miduscussion</title>
+	<title>{currentServer[0]?.channels[0]?.friendly_name} | TechTalks</title>
 	<meta name="description" content="El chat de discusion de temas de programacion!" />
 </svelte:head>
 

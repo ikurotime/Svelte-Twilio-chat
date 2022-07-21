@@ -4,7 +4,7 @@
 import { session } from '$app/stores';
 </script>
 
-<div class="flex justify-center text-end items-center">
+<div class="flex justify-center text-end items-center col-start-3">
 	<span class="ml-2 text-sm  w-36 mx-3">
 			{$discordUser?.username || $user?.username || $userName || $session?.user_metadata.full_name ||'Anonymous'}
 	</span>

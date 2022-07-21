@@ -11,7 +11,7 @@ import { onMount } from 'svelte';
 </script>
 
 <svelte:head>
-	<title>Home | Miduscussion</title>
+	<title>Home | TechTalks</title>
 	<meta name="description" content="El chat de discusion de temas de programacion!" />
 </svelte:head>
 

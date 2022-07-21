@@ -72,7 +72,7 @@ import { onDestroy, onMount } from 'svelte';
 	<div class="flex">
 		<TextArea 
   bind:value={message} 
-	classes={"p-2 border-2 border-neutral-700 w-full rounded-xl bg-gray-600 dark:bg-neutral-600 h-14 text-white"}
+	classes={"p-2 border-2 border-neutral-700 w-full rounded-xl bg-gray-600 dark:bg-neutral-600 h-auto max-w-md text-white"}
   minRows={1}
 	maxRows={10}
 	{currentChatname}

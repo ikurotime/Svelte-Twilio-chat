@@ -37,7 +37,7 @@ Here're some of the project's best features:
 <p>1. Install the repo in your machine</p>
 
 ```
-git clone https://github.com/ikurotime/Svelte-Twillio-chat
+git clone https://github.com/ikurotime/Svelte-Twilio-chat.git
 ```
 
 <p>2. Install the server repo in your machine</p>

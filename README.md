@@ -52,18 +52,15 @@ https://supabase.com/docs/guides/local-development
 ```
 
 <p>4. Add the required .env variables</p>
-```
-VITE_PUBLIC_TWILIO_ACCOUNT_SID=
-VITE_PUBLIC_TWILIO_AUTH_TOKEN=
-VITE_PUBLIC_TWILIO_API_KEY=
-VITE_PUBLIC_TWILIO_API_SECRET=
-VITE_PUBLIC_SERVICE_SID=
 
-VITE_SUPABASE_URL=
-VITE_SUPABASE_ANON_KEY=
-VITE_BACKEND_URL=
-
-```
+VITE_PUBLIC_TWILIO_ACCOUNT_SID=<br/>
+VITE_PUBLIC_TWILIO_AUTH_TOKEN=<br/>
+VITE_PUBLIC_TWILIO_API_KEY=<br/>
+VITE_PUBLIC_TWILIO_API_SECRET=<br/>
+VITE_PUBLIC_SERVICE_SID=<br/>
+VITE_SUPABASE_URL=<br/>
+VITE_SUPABASE_ANON_KEY=<br/>
+VITE_BACKEND_URL=<br/>
 
 <p>5. Execute `npm run dev` in both enviroments</p>
 
@@ -90,4 +87,4 @@ This project is licensed under the MIT
 <h2>💖Like my work?</h2>
 
 If you like this project consider following me on social media. I share my knowledge and projects 🔥🚀<p>https://twitter.com/ikurotime</p>
-```
+
